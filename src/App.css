@@ -1,0 +1,11 @@
+.board {
+  display: grid;
+  text-align: center;
+  grid-template-columns: repeat(var(--columns), minmax(0, 1fr));
+  grid-template-rows: repeat(var(--rows), minmax(0, 1fr));
+  width: calc(var(--columns) * 20px);
+  height: calc(var(--rows) * 20px);
+}
+.board img {
+  display: block;
+}
