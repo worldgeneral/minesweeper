@@ -1,5 +1,5 @@
 import { GameGrid } from "./GameGrid";
-import { gridLayout, click } from "./gameLogic";
+import { gridLayout } from "./gameLogic";
 import { useState, useEffect } from "react";
 
 let width = 10;
