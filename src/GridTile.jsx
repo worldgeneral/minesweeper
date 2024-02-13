@@ -25,12 +25,7 @@ function GridTile({ tile, click, gameOver, setGameOver }) {
   if (rightClickState === true) {
     return (
       <div onContextMenu={handleRightClick}>
-        <img
-          width={"20px"}
-          height={"20px"}
-          src="src/images/tileFlag.png"
-          alt=""
-        />
+        <img width={"20px"} height={"20px"} src="/images/tileFlag.png" alt="" />
       </div>
     );
   }
@@ -41,7 +36,7 @@ function GridTile({ tile, click, gameOver, setGameOver }) {
         <img
           width={"20px"}
           height={"20px"}
-          src="src/images/unopenedSquare.png"
+          src="/images/unopenedSquare.png"
           alt=""
         />
       </div>
@@ -50,12 +45,7 @@ function GridTile({ tile, click, gameOver, setGameOver }) {
     if (tile === -1) {
       return (
         <div width={"20px"} height={"20px"}>
-          <img
-            width={"20px"}
-            height={"20px"}
-            src="src/images/bomb.png"
-            alt=""
-          />
+          <img width={"20px"} height={"20px"} src="/images/bomb.png" alt="" />
         </div>
       );
     }
