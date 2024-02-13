@@ -2,7 +2,7 @@ import { useState } from "react";
 
 //import { onClickTile } from "./gameLogic";
 
-function GridTile({ tile, click, gameOver, setGameOver }) {
+function GridTile({ tile, gameOver, setGameOver }) {
   const [tileState, setTileState] = useState(false);
   const [rightClickState, setRightClickState] = useState(false);
 
@@ -13,12 +13,12 @@ function GridTile({ tile, click, gameOver, setGameOver }) {
     }
   };
   function handleClick() {
-    click(tile, gameOver);
-    if (gameState === true) {
-      setGameOver(true);
+    if (tile === -1 && gameOver === false) {
+      return setGameOver(true), setTileState(true);
     }
-    if (state === true) {
-      setTileState(true);
+
+    if (gameOver === false) {
+      return setTileState(true);
     }
   }
 
