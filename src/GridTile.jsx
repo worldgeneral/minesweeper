@@ -1,25 +1,44 @@
 import { useState } from "react";
+import { tileState } from "./react-minesweeper";
 
 //import { onClickTile } from "./gameLogic";
 
-function GridTile({ tile, gameOver, setGameOver }) {
-  const [tileState, setTileState] = useState(false);
+function GridTile({
+  tile,
+  id,
+  gameOver,
+  setGameOver,
+  tileClickState,
+  setTileClickState,
+}) {
+  const [tileState, setTileState] = useState(tileClickState[id]);
   const [rightClickState, setRightClickState] = useState(false);
 
   const handleRightClick = (event) => {
     if (gameOver === false) {
-      setRightClickState(!rightClickState);
       event.preventDefault();
+      setRightClickState(!rightClickState);
     }
   };
-  function handleClick() {
+  function handleClick(val) {
     if (tile === -1 && gameOver === false) {
-      return setGameOver(true), setTileState(true);
+      return (
+        setGameOver(true), tileClickState.splice(val, 1, true), setTileState()
+      );
     }
 
     if (gameOver === false) {
-      return setTileState(true);
+      tileClickState.splice(val, 1, true);
+      setTileState();
     }
+  }
+
+  if (tile === -1 && gameOver === true) {
+    return (
+      <div width={"20px"} height={"20px"}>
+        <img width={"20px"} height={"20px"} src="/images/bomb.png" alt="" />
+      </div>
+    );
   }
 
   if (rightClickState === true) {
@@ -30,9 +49,10 @@ function GridTile({ tile, gameOver, setGameOver }) {
     );
   }
 
-  if (tileState === false) {
+  if (tileClickState[id] === false) {
+    console.log(tileClickState[id]);
     return (
-      <div onClick={handleClick} onContextMenu={handleRightClick}>
+      <div onClick={() => handleClick(id)} onContextMenu={handleRightClick}>
         <img
           width={"20px"}
           height={"20px"}
@@ -41,16 +61,8 @@ function GridTile({ tile, gameOver, setGameOver }) {
         />
       </div>
     );
-  } else {
-    if (tile === -1) {
-      return (
-        <div width={"20px"} height={"20px"}>
-          <img width={"20px"} height={"20px"} src="/images/bomb.png" alt="" />
-        </div>
-      );
-    }
-    return <div>{tile}</div>;
   }
+  return <div>{tile}</div>;
 }
 
 export { GridTile };

@@ -5,7 +5,15 @@ import { useState } from "react";
 //   gameOver = true;
 // }
 
-function GameGrid({ grid, width, height, gameOver, setGameOver }) {
+function GameGrid({
+  grid,
+  width,
+  height,
+  gameOver,
+  setGameOver,
+  tileClickState,
+  setTileClickState,
+}) {
   return (
     <div
       className="board"
@@ -17,9 +25,12 @@ function GameGrid({ grid, width, height, gameOver, setGameOver }) {
       {grid.map((tile, index) => (
         <GridTile
           tile={tile}
+          id={`${index}`}
           key={`${index}`}
           gameOver={gameOver}
           setGameOver={setGameOver}
+          tileClickState={tileClickState}
+          setTileClickState={setTileClickState}
         />
       ))}
     </div>
