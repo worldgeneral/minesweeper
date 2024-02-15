@@ -50,7 +50,6 @@ function GridTile({
   }
 
   if (tileClickState[id] === false) {
-    console.log(tileClickState[id]);
     return (
       <div onClick={() => handleClick(id)} onContextMenu={handleRightClick}>
         <img

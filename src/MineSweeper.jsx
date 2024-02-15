@@ -13,6 +13,12 @@ function MineSweeper() {
   );
   const [tileClickState, setTileClickState] = useState(tileState(100));
 
+  function resetGame() {
+    setGameGrid(gridLayout(width, height, bombCount));
+    setTileClickState(tileState(100));
+    setGameOver(false);
+  }
+
   return (
     <>
       <GameGrid
@@ -24,9 +30,7 @@ function MineSweeper() {
         tileClickState={tileClickState}
         setTileClickState={setTileClickState}
       />
-      <button onClick={() => setGameGrid(gridLayout(width, height, bombCount))}>
-        reset
-      </button>
+      <button onClick={() => resetGame()}>reset</button>
     </>
   );
 }
