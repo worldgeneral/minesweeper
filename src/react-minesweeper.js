@@ -6,3 +6,8 @@ export function tileState(length) {
   //console.log(tileStateArray);
   return tileStateArray;
 }
+
+export function flagState() {
+  const flagArray = [];
+  return flagArray;
+}

@@ -1,7 +1,7 @@
 import { GameGrid } from "./GameGrid";
 import { gridLayout } from "./gameLogic";
 import { useState, useEffect } from "react";
-import { tileState } from "./react-minesweeper";
+import { tileState, flagState } from "./react-minesweeper";
 
 let width = 10;
 let height = 10;
@@ -12,11 +12,13 @@ function MineSweeper() {
     gridLayout(width, height, bombCount)
   );
   const [tileClickState, setTileClickState] = useState(tileState(100));
+  const [flagCellState, setFlagCellState] = useState(flagState());
 
   function resetGame() {
     setGameGrid(gridLayout(width, height, bombCount));
     setTileClickState(tileState(100));
     setGameOver(false);
+    setFlagCellState(flagState());
   }
 
   return (
@@ -28,7 +30,8 @@ function MineSweeper() {
         gameOver={gameOver}
         setGameOver={setGameOver}
         tileClickState={tileClickState}
-        setTileClickState={setTileClickState}
+        setFlagCellState={setFlagCellState}
+        flagCellState={flagCellState}
       />
       <button onClick={() => resetGame()}>reset</button>
     </>

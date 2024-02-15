@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { tileState } from "./react-minesweeper";
 
 //import { onClickTile } from "./gameLogic";
 
@@ -9,17 +8,33 @@ function GridTile({
   gameOver,
   setGameOver,
   tileClickState,
-  setTileClickState,
+  setFlagCellState,
+  flagCellState,
 }) {
   const [tileState, setTileState] = useState(tileClickState[id]);
   const [rightClickState, setRightClickState] = useState(false);
 
   const handleRightClick = (event) => {
     if (gameOver === false) {
-      event.preventDefault();
+      flagCell();
       setRightClickState(!rightClickState);
+      event.preventDefault();
     }
   };
+
+  function flagCell() {
+    if (flagCellState.includes(parseInt(id)) === true) {
+      flagCellState.splice(flagCellState.indexOf(parseInt(id), 1));
+      console.log(flagCellState);
+      return;
+    }
+    if (flagCellState.includes(parseInt(id)) === false) {
+      flagCellState.push(parseInt(id));
+      console.log(flagCellState);
+      return;
+    }
+  }
+
   function handleClick(val) {
     if (tile === -1 && gameOver === false) {
       return (
@@ -41,7 +56,7 @@ function GridTile({
     );
   }
 
-  if (rightClickState === true) {
+  if (flagCellState.includes(parseInt(id))) {
     return (
       <div onContextMenu={handleRightClick}>
         <img width={"20px"} height={"20px"} src="/images/tileFlag.png" alt="" />
