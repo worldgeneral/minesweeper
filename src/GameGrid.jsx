@@ -12,8 +12,10 @@ function GameGrid({
   gameOver,
   setGameOver,
   tileClickState,
-  setFlagCellState,
+  setTileClickState,
   flagCellState,
+  setFlagCellState,
+  revealCells,
 }) {
   return (
     <div
@@ -31,8 +33,10 @@ function GameGrid({
           gameOver={gameOver}
           setGameOver={setGameOver}
           tileClickState={tileClickState}
-          setFlagCellState={setFlagCellState}
+          setTileClickState={setTileClickState}
           flagCellState={flagCellState}
+          setFlagCellState={setFlagCellState}
+          revealCells={revealCells}
         />
       ))}
     </div>

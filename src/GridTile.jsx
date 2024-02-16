@@ -8,10 +8,11 @@ function GridTile({
   gameOver,
   setGameOver,
   tileClickState,
-  setFlagCellState,
+  setTileClickState,
   flagCellState,
+  setFlagCellState,
+  revealCells,
 }) {
-  const [tileState, setTileState] = useState(tileClickState[id]);
   const [rightClickState, setRightClickState] = useState(false);
 
   const handleRightClick = (event) => {
@@ -25,26 +26,33 @@ function GridTile({
   function flagCell() {
     if (flagCellState.includes(parseInt(id)) === true) {
       flagCellState.splice(flagCellState.indexOf(parseInt(id), 1));
-      console.log(flagCellState);
+
       return;
     }
     if (flagCellState.includes(parseInt(id)) === false) {
       flagCellState.push(parseInt(id));
-      console.log(flagCellState);
+
       return;
     }
   }
 
-  function handleClick(val) {
+  function handleClick() {
     if (tile === -1 && gameOver === false) {
       return (
-        setGameOver(true), tileClickState.splice(val, 1, true), setTileState()
+        setGameOver(true),
+        setTileClickState((preValue) => {
+          return [...preValue, parseInt(id)];
+        })
       );
     }
 
-    if (gameOver === false) {
-      tileClickState.splice(val, 1, true);
-      setTileState();
+    if (gameOver === false && tileClickState.includes(parseInt(id)) === false) {
+      if (tile === 0) {
+        revealCells(id);
+      }
+      setTileClickState((preValue) => {
+        return [...preValue, parseInt(id)];
+      });
     }
   }
 
@@ -63,10 +71,19 @@ function GridTile({
       </div>
     );
   }
-
-  if (tileClickState[id] === false) {
+  if (tileClickState.includes(parseInt(id))) {
     return (
-      <div onClick={() => handleClick(id)} onContextMenu={handleRightClick}>
+      <div>
+        <img
+          width={"20px"}
+          height={"20px"}
+          src={`/images/Minesweeper${tile}.svg`}
+        />
+      </div>
+    );
+  } else {
+    return (
+      <div onClick={() => handleClick()} onContextMenu={handleRightClick}>
         <img
           width={"20px"}
           height={"20px"}
@@ -76,7 +93,7 @@ function GridTile({
       </div>
     );
   }
-  return <div>{tile}</div>;
+  //return <div>{tile}</div>;
 }
 
 export { GridTile };

@@ -1,5 +1,5 @@
 import { GameGrid } from "./GameGrid";
-import { gridLayout } from "./gameLogic";
+import { gridLayout, cellReveal } from "./gameLogic";
 import { useState, useEffect } from "react";
 import { tileState, flagState } from "./react-minesweeper";
 
@@ -11,14 +11,21 @@ function MineSweeper() {
   const [gameGrid, setGameGrid] = useState(
     gridLayout(width, height, bombCount)
   );
-  const [tileClickState, setTileClickState] = useState(tileState(100));
+  const [tileClickState, setTileClickState] = useState(tileState());
   const [flagCellState, setFlagCellState] = useState(flagState());
 
   function resetGame() {
     setGameGrid(gridLayout(width, height, bombCount));
-    setTileClickState(tileState(100));
+    setTileClickState(tileState());
     setGameOver(false);
     setFlagCellState(flagState());
+  }
+  function revealCells(tile) {
+    const cells = cellReveal(width, height, gameGrid, tile);
+    console.log(cells);
+    setTileClickState((preValue) => {
+      return [...preValue, ...cells];
+    });
   }
 
   return (
@@ -30,8 +37,10 @@ function MineSweeper() {
         gameOver={gameOver}
         setGameOver={setGameOver}
         tileClickState={tileClickState}
-        setFlagCellState={setFlagCellState}
+        setTileClickState={setTileClickState}
         flagCellState={flagCellState}
+        setFlagCellState={setFlagCellState}
+        revealCells={revealCells}
       />
       <button onClick={() => resetGame()}>reset</button>
     </>
