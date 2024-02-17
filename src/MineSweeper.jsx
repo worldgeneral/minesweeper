@@ -22,7 +22,7 @@ function MineSweeper() {
   }
   function revealCells(tile) {
     const cells = cellReveal(width, height, gameGrid, tile);
-    console.log(cells);
+
     setTileClickState((preValue) => {
       return [...preValue, ...cells];
     });

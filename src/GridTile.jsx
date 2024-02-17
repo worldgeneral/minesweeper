@@ -77,7 +77,7 @@ function GridTile({
         <img
           width={"20px"}
           height={"20px"}
-          src={`/images/Minesweeper${tile}.svg`}
+          src={`/images/Minesweeper${tile}.png`}
         />
       </div>
     );
