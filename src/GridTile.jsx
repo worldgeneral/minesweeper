@@ -61,7 +61,12 @@ function GridTile({
   if (tile === -1 && gameOver === true) {
     return (
       <div width={"20px"} height={"20px"}>
-        <img width={"20px"} height={"20px"} src="/images/bomb.png" alt="" />
+        <img
+          width={"20px"}
+          height={"20px"}
+          src="/images/MinesweeperBomb.svg"
+          alt=""
+        />
       </div>
     );
   }
@@ -69,7 +74,12 @@ function GridTile({
   if (flagCellState.includes(parseInt(id))) {
     return (
       <div onContextMenu={handleRightClick}>
-        <img width={"20px"} height={"20px"} src="/images/tileFlag.png" alt="" />
+        <img
+          width={"20px"}
+          height={"20px"}
+          src="/images/MinesweeperFlag.svg"
+          alt=""
+        />
       </div>
     );
   }
@@ -79,7 +89,7 @@ function GridTile({
         <img
           width={"20px"}
           height={"20px"}
-          src={`/images/Minesweeper${tile}.png`}
+          src={`/images/Minesweeper${tile}.svg`}
         />
       </div>
     );
@@ -89,13 +99,12 @@ function GridTile({
         <img
           width={"20px"}
           height={"20px"}
-          src="/images/unopenedSquare.png"
+          src="/images/MinesweeperUnopened.svg"
           alt=""
         />
       </div>
     );
   }
-  //return <div>{tile}</div>;
 }
 
 export { GridTile };
