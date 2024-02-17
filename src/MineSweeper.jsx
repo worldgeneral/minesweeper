@@ -13,12 +13,14 @@ function MineSweeper() {
   );
   const [tileClickState, setTileClickState] = useState(tileState());
   const [flagCellState, setFlagCellState] = useState(flagState());
+  const [gameWin, setGameWin] = useState(false);
 
   function resetGame() {
     setGameGrid(gridLayout(width, height, bombCount));
     setTileClickState(tileState());
     setGameOver(false);
     setFlagCellState(flagState());
+    setGameWin(false);
   }
   function revealCells(tile) {
     const cells = cellReveal(width, height, gameGrid, tile);

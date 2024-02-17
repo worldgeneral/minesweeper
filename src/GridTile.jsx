@@ -13,26 +13,28 @@ function GridTile({
   setFlagCellState,
   revealCells,
 }) {
-  const [rightClickState, setRightClickState] = useState(false);
-
   const handleRightClick = (event) => {
     if (gameOver === false) {
       flagCell();
-      setRightClickState(!rightClickState);
+
       event.preventDefault();
     }
   };
 
   function flagCell() {
     if (flagCellState.includes(parseInt(id)) === true) {
-      flagCellState.splice(flagCellState.indexOf(parseInt(id), 1));
+      let newState = [];
+      newState.push(
+        flagCellState.splice(flagCellState.indexOf(parseInt(id), 1))
+      );
+      setFlagCellState(() => newState);
 
       return;
     }
     if (flagCellState.includes(parseInt(id)) === false) {
-      flagCellState.push(parseInt(id));
-
-      return;
+      setFlagCellState((preValue) => {
+        return [...preValue, parseInt(id)];
+      });
     }
   }
 
