@@ -1,3 +1,5 @@
+import { GridSizeForm } from "./GridSizeForm";
+
 function GameMenu({
   resetGame,
   setWidth,
@@ -21,6 +23,7 @@ function GameMenu({
         <button onClick={() => gridSettings(9, 9, 10)}>Beginner</button>
         <button onClick={() => gridSettings(16, 16, 40)}> Intermediate</button>
         <button onClick={() => gridSettings(32, 16, 99)}>Expert</button>
+        <GridSizeForm gridSettings={gridSettings} />
       </div>
     </>
   );
