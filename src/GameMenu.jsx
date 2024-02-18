@@ -1,4 +1,12 @@
-function GameMenu({ resetGame, setWidth, setHeight, setBombCount }) {
+function GameMenu({
+  resetGame,
+  setWidth,
+  setHeight,
+  setBombCount,
+  width,
+  height,
+  bombCount,
+}) {
   function gridSettings(gridWidth, gridHeight, gridBombCount) {
     setWidth(() => gridWidth);
     setHeight(() => gridHeight);
@@ -8,7 +16,7 @@ function GameMenu({ resetGame, setWidth, setHeight, setBombCount }) {
   return (
     <>
       <div></div>
-      <button onClick={() => resetGame()}>reset</button>
+      <button onClick={() => resetGame(width, height, bombCount)}>reset</button>
       <div>
         <button onClick={() => gridSettings(9, 9, 10)}>Beginner</button>
         <button onClick={() => gridSettings(16, 16, 40)}> Intermediate</button>

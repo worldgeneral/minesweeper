@@ -39,6 +39,9 @@ function MineSweeper() {
         setWidth={setWidth}
         setHeight={setHeight}
         setBombCount={setBombCount}
+        width={width}
+        height={height}
+        bombCount={bombCount}
       />
       <GameGrid
         grid={gameGrid}
