@@ -3,7 +3,7 @@ function gridLayout(width, height, totalBombCount) {
   const totalTiles = width * height;
   const bombArray = hasBomb(totalBombCount, totalTiles);
   let currentCell = 0;
-  //let currentRow = 0;
+
   for (let cell = 0; cell < totalTiles; cell++) {
     const isLeft =
       currentCell > currentCell - 1 &&

@@ -22,16 +22,13 @@ function GridTile({
   };
 
   function flagCell() {
-    if (flagCellState.includes(parseInt(id)) === true) {
-      let newState = [];
-      newState.push(
-        flagCellState.splice(flagCellState.indexOf(parseInt(id), 1))
-      );
-      setFlagCellState(() => newState);
-
-      return;
-    }
-    if (flagCellState.includes(parseInt(id)) === false) {
+    if (flagCellState.includes(parseInt(id))) {
+      setFlagCellState((preValue) => {
+        let state = [...preValue];
+        state.splice(state.indexOf(parseInt(id), 1));
+        return state;
+      });
+    } else {
       setFlagCellState((preValue) => {
         return [...preValue, parseInt(id)];
       });
