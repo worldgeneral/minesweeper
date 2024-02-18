@@ -1,9 +1,4 @@
 import { GridTile } from "./GridTile";
-import { useState } from "react";
-// let gameOver = false;
-// function clickedBomb() {
-//   gameOver = true;
-// }
 
 function GameGrid({
   grid,

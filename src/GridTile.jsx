@@ -25,7 +25,7 @@ function GridTile({
     if (flagCellState.includes(parseInt(id))) {
       setFlagCellState((preValue) => {
         let state = [...preValue];
-        state.splice(state.indexOf(parseInt(id), 1));
+        state.splice(state.indexOf(parseInt(id)), 1);
         return state;
       });
     } else {
