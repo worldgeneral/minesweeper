@@ -1,4 +1,5 @@
 import { GridTile } from "./GridTile";
+import "./GameGrid.css";
 
 function GameGrid({
   grid,
@@ -17,7 +18,7 @@ function GameGrid({
 }) {
   return (
     <div
-      className="board"
+      className="game-grid"
       style={{
         "--columns": width,
         "--rows": height,

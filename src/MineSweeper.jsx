@@ -12,6 +12,7 @@ function MineSweeper() {
   const [gameOver, setGameOver] = useState(false);
   const [gameWin, setGameWin] = useState(false);
   const [buttonState, setButtonState] = useState(0);
+  const [timePasted, setTimePasted] = useState(0);
   const [remainingBombCount, setRemainingBombCount] = useState(
     parseInt(bombCount)
   );
