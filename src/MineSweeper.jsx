@@ -48,10 +48,10 @@ function MineSweeper() {
 
   useEffect(() => {
     if (tileClickState.length + bombCount === width * height) {
+      setButtonState(() => 1);
       setGameWin(true);
       setGameOver(true);
       clearInterval(clock);
-      setButtonState(() => 1);
     }
   });
 
