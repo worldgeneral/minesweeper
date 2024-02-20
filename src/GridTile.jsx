@@ -11,6 +11,7 @@ function GridTile({
   revealCells,
   setButtonState,
   displayValue,
+  setGameInPlay,
 }) {
   const handleRightClick = (event) => {
     if (gameOver === false) {
@@ -37,6 +38,8 @@ function GridTile({
   }
 
   function handleClick() {
+    setGameInPlay(true);
+
     if (tile === -1 && gameOver === false && gameWin === false) {
       return (
         setGameOver(true),
@@ -50,10 +53,11 @@ function GridTile({
     if (gameOver === false && tileClickState.includes(parseInt(id)) === false) {
       if (tile === 0) {
         revealCells(id);
+      } else {
+        setTileClickState((preValue) => {
+          return [...preValue, parseInt(id)];
+        });
       }
-      setTileClickState((preValue) => {
-        return [...preValue, parseInt(id)];
-      });
     }
   }
 

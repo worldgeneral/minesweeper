@@ -71,7 +71,7 @@ function hasBomb(bombCount, tileCount) {
   return Array.from(bombs.values());
 }
 
-function cellReveal(width, height, grid, tile) {
+function cellReveal(width, height, grid, tile, tileClickState) {
   const toLookAt = [];
   const reveal = [];
 
@@ -80,6 +80,7 @@ function cellReveal(width, height, grid, tile) {
   let currentCell = 0;
   let toLookAtIndex = 0;
 
+  reveal.push(parseInt(tile));
   toLookAt.push(parseInt(tile));
   while (toLookAt.length > toLookAtIndex) {
     currentCell = toLookAt[toLookAtIndex];
@@ -102,7 +103,8 @@ function cellReveal(width, height, grid, tile) {
     if (
       isLeft &&
       grid[currentCell - 1] >= 0 &&
-      reveal.includes(currentCell - 1) === false
+      reveal.includes(currentCell - 1) === false &&
+      tileClickState.includes(currentCell - 1) === false
     ) {
       reveal.push(currentCell - 1);
       if (grid[currentCell - 1] === 0) {
@@ -112,7 +114,8 @@ function cellReveal(width, height, grid, tile) {
     if (
       isRight &&
       grid[currentCell + 1] >= 0 &&
-      reveal.includes(currentCell + 1) === false
+      reveal.includes(currentCell + 1) === false &&
+      tileClickState.includes(currentCell + 1) === false
     ) {
       reveal.push(currentCell + 1);
       if (grid[currentCell + 1] === 0) {
@@ -122,7 +125,8 @@ function cellReveal(width, height, grid, tile) {
     if (
       isAbove &&
       grid[currentCell - width] >= 0 &&
-      reveal.includes(currentCell - width) === false
+      reveal.includes(currentCell - width) === false &&
+      tileClickState.includes(currentCell - width) === false
     ) {
       reveal.push(currentCell - width);
       if (grid[currentCell - width] === 0) {
@@ -132,7 +136,8 @@ function cellReveal(width, height, grid, tile) {
     if (
       isBelow &&
       grid[currentCell + width] >= 0 &&
-      reveal.includes(currentCell + width) === false
+      reveal.includes(currentCell + width) === false &&
+      tileClickState.includes(currentCell + width) === false
     ) {
       reveal.push(currentCell + width);
       if (grid[currentCell + width] === 0) {
@@ -142,7 +147,8 @@ function cellReveal(width, height, grid, tile) {
     if (
       isAboveLeft &&
       grid[currentCell - width - 1] >= 0 &&
-      reveal.includes(currentCell - width - 1) === false
+      reveal.includes(currentCell - width - 1) === false &&
+      tileClickState.includes(currentCell - width - 1) === false
     ) {
       reveal.push(currentCell - width - 1);
       if (grid[currentCell - width - 1] === 0) {
@@ -152,7 +158,8 @@ function cellReveal(width, height, grid, tile) {
     if (
       isAboveRight &&
       grid[currentCell - width + 1] >= 0 &&
-      reveal.includes(currentCell - width + 1) === false
+      reveal.includes(currentCell - width + 1) === false &&
+      tileClickState.includes(currentCell - width + 1) === false
     ) {
       reveal.push(currentCell - width + 1);
       if (grid[currentCell - width + 1] === 0) {
@@ -162,7 +169,8 @@ function cellReveal(width, height, grid, tile) {
     if (
       isBelowLeft &&
       grid[currentCell + width - 1] >= 0 &&
-      reveal.includes(currentCell + width - 1) === false
+      reveal.includes(currentCell + width - 1) === false &&
+      tileClickState.includes(currentCell + width - 1) === false
     ) {
       reveal.push(currentCell + width - 1);
       if (grid[currentCell + width - 1] === 0) {
@@ -172,7 +180,8 @@ function cellReveal(width, height, grid, tile) {
     if (
       isBelowRight &&
       grid[currentCell + width + 1] >= 0 &&
-      reveal.includes(currentCell + width + 1) === false
+      reveal.includes(currentCell + width + 1) === false &&
+      tileClickState.includes(currentCell + width + 1) === false
     ) {
       reveal.push(currentCell + width + 1);
       if (grid[currentCell + width + 1] === 0) {

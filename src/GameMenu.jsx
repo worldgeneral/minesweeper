@@ -1,6 +1,7 @@
 import { BombCounter } from "./BombCounter";
 import { GridSizeForm } from "./GridSizeForm";
 import { MineSweeperButton } from "./MineSweeperButton";
+import { TimePastDisplay } from "./TimePastDisplay";
 
 function GameMenu({
   resetGame,
@@ -15,6 +16,7 @@ function GameMenu({
   buttonState,
   setButtonState,
   remainingBombCount,
+  timePast,
 }) {
   function gridSettings(gridWidth, gridHeight, gridBombCount) {
     setWidth(() => gridWidth);
@@ -26,6 +28,7 @@ function GameMenu({
   return (
     <>
       <BombCounter remainingBombCount={remainingBombCount} />
+      <TimePastDisplay timePast={timePast} />
       <MineSweeperButton
         gridSettings={gridSettings}
         gameWin={gameWin}

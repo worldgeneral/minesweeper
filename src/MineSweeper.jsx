@@ -11,8 +11,10 @@ function MineSweeper() {
   const [flagCellState, setFlagCellState] = useState(() => []);
   const [gameOver, setGameOver] = useState(false);
   const [gameWin, setGameWin] = useState(false);
+  const [gameInPlay, setGameInPlay] = useState(false);
   const [buttonState, setButtonState] = useState(0);
-  const [timePasted, setTimePasted] = useState(0);
+  const [timePast, setTimePast] = useState(0);
+  const [clock, setClock] = useState(null);
   const [remainingBombCount, setRemainingBombCount] = useState(
     parseInt(bombCount)
   );
@@ -30,9 +32,30 @@ function MineSweeper() {
   }
 
   useEffect(() => {
+    if (gameInPlay && !clock) {
+      const clock = setInterval(() => {
+        setTimePast((prevTimePast) => prevTimePast + 1);
+      }, 1000);
+      setClock(clock);
+    }
+  }, [gameInPlay]);
+
+  useEffect(() => {
+    if (gameOver === true) {
+      clearInterval(clock);
+    }
+  }, [gameOver, clock]);
+
+  useEffect(() => {
+    console.log(
+      tileClickState.length,
+      tileClickState.filter((e, i, arr) => arr.indexOf(e) !== i)
+    );
+
     if (tileClickState.length + bombCount === width * height) {
       setGameWin(true);
       setGameOver(true);
+      clearInterval(clock);
       setButtonState(() => 1);
     }
   });
@@ -45,15 +68,18 @@ function MineSweeper() {
     setGameWin(false);
     setButtonState(() => 0);
     setRemainingBombCount(() => bombCount);
+    setGameInPlay(false);
+    setTimePast(() => 0);
+    clearInterval(clock);
+    setClock(null);
   }
   function revealCells(tile) {
-    const cells = cellReveal(width, height, gameGrid, tile);
-
+    const cells = cellReveal(width, height, gameGrid, tile, tileClickState);
+    console.log(cells);
     setTileClickState((preValue) => {
       return [...preValue, ...cells];
     });
   }
-  console.log(remainingBombCount);
 
   return (
     <>
@@ -70,6 +96,7 @@ function MineSweeper() {
         buttonState={buttonState}
         setButtonState={setButtonState}
         remainingBombCount={remainingBombCount}
+        timePast={timePast}
       />
       <GameGrid
         grid={gameGrid}
@@ -85,6 +112,7 @@ function MineSweeper() {
         revealCells={revealCells}
         setButtonState={setButtonState}
         displayValue={displayValue}
+        setGameInPlay={setGameInPlay}
       />
     </>
   );

@@ -15,6 +15,7 @@ function GameGrid({
   revealCells,
   setButtonState,
   displayValue,
+  setGameInPlay,
 }) {
   return (
     <div
@@ -39,6 +40,7 @@ function GameGrid({
           revealCells={revealCells}
           setButtonState={setButtonState}
           displayValue={displayValue}
+          setGameInPlay={setGameInPlay}
         />
       ))}
     </div>
