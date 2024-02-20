@@ -3,7 +3,7 @@ import "./BombCounter.css";
 function BombCounter({ remainingBombCount }) {
   return (
     <Display
-      value={parseInt(remainingBombCount)}
+      value={`${parseInt(remainingBombCount)}`}
       height={40}
       count={3}
       backgroundColor="black"
