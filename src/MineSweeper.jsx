@@ -47,11 +47,6 @@ function MineSweeper() {
   }, [gameOver, clock]);
 
   useEffect(() => {
-    console.log(
-      tileClickState.length,
-      tileClickState.filter((e, i, arr) => arr.indexOf(e) !== i)
-    );
-
     if (tileClickState.length + bombCount === width * height) {
       setGameWin(true);
       setGameOver(true);
@@ -75,7 +70,6 @@ function MineSweeper() {
   }
   function revealCells(tile) {
     const cells = cellReveal(width, height, gameGrid, tile, tileClickState);
-    console.log(cells);
     setTileClickState((preValue) => {
       return [...preValue, ...cells];
     });
