@@ -1,4 +1,5 @@
 import { GridSizeForm } from "./GridSizeForm";
+import { MineSweeperButton } from "./MineSweeperButton";
 
 function GameMenu({
   resetGame,
@@ -8,6 +9,10 @@ function GameMenu({
   width,
   height,
   bombCount,
+  gameWin,
+  gameOver,
+  buttonState,
+  setButtonState,
 }) {
   function gridSettings(gridWidth, gridHeight, gridBombCount) {
     setWidth(() => gridWidth);
@@ -15,10 +20,21 @@ function GameMenu({
     setBombCount(() => gridBombCount);
     resetGame(gridWidth, gridHeight, gridBombCount);
   }
+
   return (
     <>
       <div></div>
-      <button onClick={() => resetGame(width, height, bombCount)}>reset</button>
+      <MineSweeperButton
+        gridSettings={gridSettings}
+        gameWin={gameWin}
+        gameOver={gameOver}
+        buttonState={buttonState}
+        setButtonState={setButtonState}
+        width={width}
+        height={height}
+        bombCount={bombCount}
+      />
+
       <div>
         <button onClick={() => gridSettings(9, 9, 10)}>Beginner</button>
         <button onClick={() => gridSettings(16, 16, 40)}> Intermediate</button>

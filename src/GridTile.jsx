@@ -1,17 +1,15 @@
-import { useState } from "react";
-
-//import { onClickTile } from "./gameLogic";
-
 function GridTile({
   tile,
   id,
   gameOver,
   setGameOver,
+  gameWin,
   tileClickState,
   setTileClickState,
   flagCellState,
   setFlagCellState,
   revealCells,
+  setButtonState,
 }) {
   const handleRightClick = (event) => {
     if (gameOver === false) {
@@ -36,9 +34,10 @@ function GridTile({
   }
 
   function handleClick() {
-    if (tile === -1 && gameOver === false) {
+    if (tile === -1 && gameOver === false && gameWin === false) {
       return (
         setGameOver(true),
+        setButtonState(() => 2),
         setTileClickState((preValue) => {
           return [...preValue, parseInt(id)];
         })
