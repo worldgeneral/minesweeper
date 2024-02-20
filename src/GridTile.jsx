@@ -10,6 +10,7 @@ function GridTile({
   setFlagCellState,
   revealCells,
   setButtonState,
+  displayValue,
 }) {
   const handleRightClick = (event) => {
     if (gameOver === false) {
@@ -26,10 +27,12 @@ function GridTile({
         state.splice(state.indexOf(parseInt(id)), 1);
         return state;
       });
+      displayValue(false);
     } else {
       setFlagCellState((preValue) => {
         return [...preValue, parseInt(id)];
       });
+      displayValue(true);
     }
   }
 

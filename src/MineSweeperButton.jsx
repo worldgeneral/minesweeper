@@ -15,7 +15,11 @@ function MineSweeperButton({
           gridSettings(width, height, bombCount);
         }}
       >
-        <img src={`/images/MinesweeperButton${parseInt(buttonState)}.svg`} />
+        <img
+          width={"40px"}
+          height={"40px"}
+          src={`/images/MinesweeperButton${parseInt(buttonState)}.svg`}
+        />
       </button>
     </>
   );

@@ -1,3 +1,4 @@
+import { BombCounter } from "./BombCounter";
 import { GridSizeForm } from "./GridSizeForm";
 import { MineSweeperButton } from "./MineSweeperButton";
 
@@ -13,6 +14,7 @@ function GameMenu({
   gameOver,
   buttonState,
   setButtonState,
+  remainingBombCount,
 }) {
   function gridSettings(gridWidth, gridHeight, gridBombCount) {
     setWidth(() => gridWidth);
@@ -23,7 +25,7 @@ function GameMenu({
 
   return (
     <>
-      <div></div>
+      <BombCounter remainingBombCount={remainingBombCount} />
       <MineSweeperButton
         gridSettings={gridSettings}
         gameWin={gameWin}

@@ -12,6 +12,21 @@ function MineSweeper() {
   const [gameOver, setGameOver] = useState(false);
   const [gameWin, setGameWin] = useState(false);
   const [buttonState, setButtonState] = useState(0);
+  const [remainingBombCount, setRemainingBombCount] = useState(
+    parseInt(bombCount)
+  );
+  const [gameGrid, setGameGrid] = useState(
+    gridLayout(width, height, bombCount)
+  );
+
+  function displayValue(plusOrMinus) {
+    if (plusOrMinus === false) {
+      return setRemainingBombCount(() => remainingBombCount + 1);
+    }
+    if (plusOrMinus === true) {
+      return setRemainingBombCount(() => remainingBombCount - 1);
+    }
+  }
 
   useEffect(() => {
     if (tileClickState.length + bombCount === width * height) {
@@ -21,10 +36,6 @@ function MineSweeper() {
     }
   });
 
-  const [gameGrid, setGameGrid] = useState(
-    gridLayout(width, height, bombCount)
-  );
-
   function resetGame(width, height, bombCount) {
     setGameGrid(gridLayout(width, height, bombCount));
     setTileClickState(() => []);
@@ -32,6 +43,7 @@ function MineSweeper() {
     setFlagCellState(() => []);
     setGameWin(false);
     setButtonState(() => 0);
+    setRemainingBombCount(() => bombCount);
   }
   function revealCells(tile) {
     const cells = cellReveal(width, height, gameGrid, tile);
@@ -40,6 +52,7 @@ function MineSweeper() {
       return [...preValue, ...cells];
     });
   }
+  console.log(remainingBombCount);
 
   return (
     <>
@@ -55,6 +68,7 @@ function MineSweeper() {
         gameOver={gameOver}
         buttonState={buttonState}
         setButtonState={setButtonState}
+        remainingBombCount={remainingBombCount}
       />
       <GameGrid
         grid={gameGrid}
@@ -69,6 +83,7 @@ function MineSweeper() {
         setFlagCellState={setFlagCellState}
         revealCells={revealCells}
         setButtonState={setButtonState}
+        displayValue={displayValue}
       />
     </>
   );
