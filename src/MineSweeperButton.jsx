@@ -1,9 +1,6 @@
 function MineSweeperButton({
   gridSettings,
-  gameWin,
-  gameOver,
   buttonState,
-  setButtonState,
   width,
   height,
   bombCount,

@@ -68,6 +68,7 @@ function MineSweeper() {
     clearInterval(clock);
     setClock(null);
   }
+
   function revealCells(tile) {
     const cells = cellReveal(width, height, gameGrid, tile, tileClickState);
     setTileClickState((preValue) => {

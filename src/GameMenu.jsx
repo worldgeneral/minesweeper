@@ -28,7 +28,6 @@ function GameMenu({
   return (
     <>
       <BombCounter remainingBombCount={remainingBombCount} />
-      <TimePastDisplay timePast={timePast} />
       <MineSweeperButton
         gridSettings={gridSettings}
         gameWin={gameWin}
@@ -39,7 +38,7 @@ function GameMenu({
         height={height}
         bombCount={bombCount}
       />
-
+      <TimePastDisplay timePast={timePast} />
       <div>
         <button onClick={() => gridSettings(9, 9, 10)}>Beginner</button>
         <button onClick={() => gridSettings(16, 16, 40)}> Intermediate</button>

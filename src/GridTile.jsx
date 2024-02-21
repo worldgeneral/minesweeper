@@ -16,7 +16,6 @@ function GridTile({
   const handleRightClick = (event) => {
     if (gameOver === false) {
       flagCell();
-
       event.preventDefault();
     }
   };
@@ -39,7 +38,6 @@ function GridTile({
 
   function handleClick() {
     setGameInPlay(true);
-
     if (tile === -1 && gameOver === false && gameWin === false) {
       return (
         setGameOver(true),

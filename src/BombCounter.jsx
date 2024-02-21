@@ -1,5 +1,6 @@
 import { Display } from "react-7-segment-display";
 import "./BombCounter.css";
+
 function BombCounter({ remainingBombCount }) {
   return (
     <Display
