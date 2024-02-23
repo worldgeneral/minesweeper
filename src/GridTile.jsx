@@ -60,16 +60,27 @@ function GridTile({
   }
 
   if (tile === -1 && gameOver === true && gameWin === false) {
-    return (
-      <div width={"20px"} height={"20px"}>
+    if (tileClickState[tileClickState.length - 1] === parseInt(id)) {
+      return (
         <img
           width={"20px"}
           height={"20px"}
-          src="/images/MinesweeperBomb.svg"
+          src="/images/MinesweeperClickedBomb.svg"
           alt=""
         />
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div width={"20px"} height={"20px"}>
+          <img
+            width={"20px"}
+            height={"20px"}
+            src="/images/MinesweeperBomb.svg"
+            alt=""
+          />
+        </div>
+      );
+    }
   }
 
   if (
