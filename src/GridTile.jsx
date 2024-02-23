@@ -59,7 +59,7 @@ function GridTile({
     }
   }
 
-  if (tile === -1 && gameOver === true) {
+  if (tile === -1 && gameOver === true && gameWin === false) {
     return (
       <div width={"20px"} height={"20px"}>
         <img
