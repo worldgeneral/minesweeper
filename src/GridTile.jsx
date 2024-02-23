@@ -72,7 +72,10 @@ function GridTile({
     );
   }
 
-  if (flagCellState.includes(parseInt(id))) {
+  if (
+    flagCellState.includes(parseInt(id)) ||
+    (gameWin === true && tile === -1)
+  ) {
     return (
       <div onContextMenu={handleRightClick}>
         <img
