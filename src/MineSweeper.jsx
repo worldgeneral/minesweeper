@@ -1,6 +1,6 @@
 import { GameGrid } from "./GameGrid";
 import { GameMenu } from "./GameMenu";
-import { gridLayout, cellReveal } from "./gameLogic";
+import { gridLayout, cellReveal, chording } from "./gameLogic";
 import { useState, useEffect } from "react";
 
 function MineSweeper() {
@@ -15,6 +15,7 @@ function MineSweeper() {
   const [buttonState, setButtonState] = useState(0);
   const [timePast, setTimePast] = useState(0);
   const [clock, setClock] = useState(null);
+  const [chordingState, setChordingState] = useState(() => []);
   const [remainingBombCount, setRemainingBombCount] = useState(
     parseInt(bombCount)
   );
@@ -67,6 +68,7 @@ function MineSweeper() {
     setTimePast(() => 0);
     clearInterval(clock);
     setClock(null);
+    setChordingState(() => []);
   }
 
   function revealCells(tile) {
@@ -74,6 +76,33 @@ function MineSweeper() {
     setTileClickState((preValue) => {
       return [...preValue, ...cells];
     });
+  }
+
+  function handleChording(id) {
+    const cells = chording(
+      id,
+      gameGrid,
+      tileClickState,
+      flagCellState,
+      width,
+      height
+    );
+
+    if (cells[0] === "!flags") {
+      setChordingState(() => cells.slice(1));
+      return;
+    } else if (cells[0] === "correct") {
+      setTileClickState((preValue) => {
+        return [...preValue, ...cells.slice(1)];
+      });
+      return;
+    } else {
+      setTileClickState((preValue) => {
+        return [...preValue, ...cells.slice(1)];
+      });
+      setGameOver(true);
+      return;
+    }
   }
 
   return (
@@ -108,6 +137,8 @@ function MineSweeper() {
         setButtonState={setButtonState}
         displayValue={displayValue}
         setGameInPlay={setGameInPlay}
+        handleChording={handleChording}
+        chordingState={chordingState}
       />
     </>
   );

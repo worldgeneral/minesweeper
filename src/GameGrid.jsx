@@ -16,6 +16,8 @@ function GameGrid({
   setButtonState,
   displayValue,
   setGameInPlay,
+  handleChording,
+  chordingState,
 }) {
   return (
     <div
@@ -41,6 +43,8 @@ function GameGrid({
           setButtonState={setButtonState}
           displayValue={displayValue}
           setGameInPlay={setGameInPlay}
+          handleChording={handleChording}
+          chordingState={chordingState}
         />
       ))}
     </div>

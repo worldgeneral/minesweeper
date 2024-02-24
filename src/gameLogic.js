@@ -194,4 +194,122 @@ function cellReveal(width, height, grid, tile, tileClickState) {
   return reveal;
 }
 
-export { gridLayout, cellReveal };
+function chording(tile, grid, tileState, flagState, width, height) {
+  const reveal = [];
+  const tiles = [];
+  const tileID = [];
+  let correctFlag = true;
+  const currentCell = tile;
+  const totalTiles = width * height;
+
+  const flaggedBombs = [];
+
+  const isLeft =
+    currentCell > currentCell - 1 &&
+    currentCell !==
+      Math.floor(currentCell / (totalTiles / height) + 1) * width - width;
+  const isRight =
+    currentCell + 1 <
+      width * (Math.floor(currentCell / (totalTiles / height)) + 1) &&
+    currentCell !==
+      Math.floor(currentCell / (totalTiles / height) + 1) * width - 1;
+  const isAbove = currentCell - width >= 0;
+  const isBelow = currentCell + width < totalTiles;
+  const isAboveLeft = isLeft && isAbove;
+  const isAboveRight = isRight && isAbove;
+  const isBelowLeft = isLeft && isBelow;
+  const isBelowRight = isRight && isBelow;
+
+  if (isAboveLeft === true) {
+    tiles.push(grid[currentCell - width - 1]);
+    tileID.push(currentCell - width - 1);
+    if (flagState.includes(currentCell - width - 1)) {
+      flaggedBombs.push(currentCell - width - 1);
+    }
+  }
+  if (isAbove) {
+    tiles.push(grid[currentCell - width]);
+    tileID.push(currentCell - width);
+    if (flagState.includes(currentCell - width)) {
+      flaggedBombs.push(currentCell - width);
+    }
+  }
+  if (isAboveRight === true) {
+    tiles.push(grid[currentCell - width + 1]);
+    tileID.push(currentCell - width + 1);
+    if (flagState.includes(currentCell - width + 1)) {
+      flaggedBombs.push(currentCell - width + 1);
+    }
+  }
+  if (isLeft === true) {
+    tiles.push(grid[currentCell - 1]);
+    tileID.push(currentCell - 1);
+    if (flagState.includes(currentCell - 1)) {
+      flaggedBombs.push(currentCell - 1);
+    }
+  }
+  if (isRight === true) {
+    tiles.push(grid[currentCell + 1]);
+    tileID.push(currentCell + 1);
+    if (flagState.includes(currentCell + 1)) {
+      flaggedBombs.push(currentCell + 1);
+    }
+  }
+  if (isBelowLeft === true) {
+    tiles.push(grid[currentCell + width - 1]);
+    tileID.push(currentCell + width - 1);
+    if (flagState.includes(currentCell + width - 1)) {
+      flaggedBombs.push(currentCell + width - 1);
+    }
+  }
+  if (isBelow === true) {
+    tiles.push(grid[currentCell + width]);
+    tileID.push(currentCell + width);
+    if (flagState.includes(currentCell + width)) {
+      flaggedBombs.push(currentCell + width);
+    }
+  }
+  if (isBelowRight === true) {
+    tiles.push(grid[currentCell + width + 1]);
+    tileID.push(currentCell + width + 1);
+    if (flagState.includes(currentCell + width + 1)) {
+      flaggedBombs.push(currentCell + width + 1);
+    }
+  }
+
+  for (let i = 0; i < tiles.length; i++) {
+    if (tiles[i] === -1 && correctFlag === true) {
+      if (flaggedBombs.includes(tileID[i])) {
+        correctFlag = true;
+      } else {
+        correctFlag = false;
+      }
+    }
+  }
+
+  if (correctFlag) {
+    reveal.push("correct");
+    for (let i = 0; i < tiles.length; i++) {
+      if (!tileState.includes(tileID[i]) && tiles[i] >= 0) {
+        reveal.push(tileID[i]);
+      }
+    }
+    return reveal;
+  } else if (!correctFlag && flaggedBombs.length === tile) {
+    reveal.push("!correct");
+    for (let i = 0; i < tiles.length; i++) {
+      if (!tileState.includes(tileID[i]) && !flagState.includes(tileID[i])) {
+        reveal.push(tileID[i]);
+      }
+    }
+  } else if (flaggedBombs.length !== tile) {
+    reveal.push("!flags");
+    for (let i = 0; i < tiles.length; i++) {
+      if (!tileState.includes(tileID[i]) && !flagState.includes(tileID[i])) {
+        reveal.push(tileID[i]);
+      }
+    }
+    return reveal;
+  }
+}
+export { gridLayout, cellReveal, chording };

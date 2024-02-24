@@ -12,6 +12,8 @@ function GridTile({
   setButtonState,
   displayValue,
   setGameInPlay,
+  handleChording,
+  chordingState,
 }) {
   const handleRightClick = (event) => {
     if (gameOver === false) {
@@ -71,16 +73,19 @@ function GridTile({
       );
     } else {
       return (
-        <div width={"20px"} height={"20px"}>
-          <img
-            width={"20px"}
-            height={"20px"}
-            src="/images/MinesweeperBomb.svg"
-            alt=""
-          />
-        </div>
+        <img
+          width={"20px"}
+          height={"20px"}
+          src="/images/MinesweeperBomb.svg"
+          alt=""
+        />
       );
     }
+  }
+  if (chordingState.includes(parseInt(id))) {
+    return (
+      <img width={"20px"} height={"20px"} src="/images/Minesweeper0.svg" />
+    );
   }
 
   if (
@@ -88,36 +93,34 @@ function GridTile({
     (gameWin === true && tile === -1)
   ) {
     return (
-      <div onContextMenu={handleRightClick}>
-        <img
-          width={"20px"}
-          height={"20px"}
-          src="/images/MinesweeperFlag.svg"
-          alt=""
-        />
-      </div>
+      <img
+        onContextMenu={handleRightClick}
+        width={"20px"}
+        height={"20px"}
+        src="/images/MinesweeperFlag.svg"
+        alt=""
+      />
     );
   }
   if (tileClickState.includes(parseInt(id))) {
     return (
-      <div>
-        <img
-          width={"20px"}
-          height={"20px"}
-          src={`/images/Minesweeper${tile}.svg`}
-        />
-      </div>
+      <img
+        onClick={() => handleChording(parseInt(id))}
+        width={"20px"}
+        height={"20px"}
+        src={`/images/Minesweeper${tile}.svg`}
+      />
     );
   } else {
     return (
-      <div onClick={() => handleClick()} onContextMenu={handleRightClick}>
-        <img
-          width={"20px"}
-          height={"20px"}
-          src="/images/MinesweeperUnopened.svg"
-          alt=""
-        />
-      </div>
+      <img
+        onClick={() => handleClick()}
+        onContextMenu={handleRightClick}
+        width={"20px"}
+        height={"20px"}
+        src="/images/MinesweeperUnopened.svg"
+        alt=""
+      />
     );
   }
 }
