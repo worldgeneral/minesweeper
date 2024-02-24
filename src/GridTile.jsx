@@ -1,3 +1,5 @@
+import "./GridTile.css";
+
 function GridTile({
   tile,
   id,
@@ -64,29 +66,14 @@ function GridTile({
 
   if (tile === -1 && gameOver === true && gameWin === false) {
     if (tileClickState[tileClickState.length - 1] === parseInt(id)) {
-      return (
-        <img
-          width={"20px"}
-          height={"20px"}
-          src="/images/MinesweeperClickedBomb.svg"
-          alt=""
-        />
-      );
+      return <button className="tile-btn minesweeper-clicked-bomb"></button>;
     } else {
-      return (
-        <img
-          width={"20px"}
-          height={"20px"}
-          src="/images/MinesweeperBomb.svg"
-          alt=""
-        />
-      );
+      return <button className="tile-btn minesweeper-bomb"></button>;
     }
   }
+
   if (chordingState.includes(parseInt(id))) {
-    return (
-      <img width={"20px"} height={"20px"} src="/images/Minesweeper0.svg" />
-    );
+    return <button className="tile-btn tile0"></button>;
   }
 
   if (
@@ -94,35 +81,27 @@ function GridTile({
     (gameWin === true && tile === -1)
   ) {
     return (
-      <img
+      <button
+        className="tile-btn minesweeper-flag"
         onContextMenu={handleRightClick}
-        width={"20px"}
-        height={"20px"}
-        src="/images/MinesweeperFlag.svg"
-        alt=""
-      />
+      ></button>
     );
   }
   if (tileClickState.includes(parseInt(id))) {
     return (
-      <img
+      <button
+        className={`tile${tile} tile-btn`}
         onMouseDown={() => handleChording(parseInt(id))}
         onMouseUp={() => setChordingState([])}
-        width={"20px"}
-        height={"20px"}
-        src={`/images/Minesweeper${tile}.svg`}
-      />
+      ></button>
     );
   } else {
     return (
-      <img
+      <button
+        className="unopened-tile tile-btn"
         onClick={() => handleClick()}
         onContextMenu={handleRightClick}
-        width={"20px"}
-        height={"20px"}
-        src="/images/MinesweeperUnopened.svg"
-        alt=""
-      />
+      ></button>
     );
   }
 }
