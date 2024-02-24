@@ -3,95 +3,47 @@
   border: none;
   padding: 0;
   margin: 0;
+  background-size: cover;
+  background-position: center;
+  width: 20px;
+  height: 20px;
 }
 .unopened-tile {
   background-image: url("/images/MinesweeperUnopened.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .tile0 {
   background-image: url("/images/Minesweeper0.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .tile1 {
   background-image: url("/images/Minesweeper1.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .tile2 {
   background-image: url("/images/Minesweeper2.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .tile3 {
   background-image: url("/images/Minesweeper3.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .tile4 {
   background-image: url("/images/Minesweeper4.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .tile5 {
   background-image: url("/images/Minesweeper5.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .tile6 {
   background-image: url("/images/Minesweeper6.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .tile7 {
   background-image: url("/images/Minesweeper7.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .tile8 {
   background-image: url("/images/Minesweeper8.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .minesweeper-flag {
   background-image: url("/images/MinesweeperFlag.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .minesweeper-bomb {
   background-image: url("/images/MinesweeperBomb.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
 .minesweeper-clicked-bomb {
   background-image: url("/images/MinesweeperClickedBomb.svg");
-  background-size: cover;
-  background-position: center;
-  width: 20px;
-  height: 20px;
 }
