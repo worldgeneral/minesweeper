@@ -14,6 +14,7 @@ function GridTile({
   setGameInPlay,
   handleChording,
   chordingState,
+  setChordingState,
 }) {
   const handleRightClick = (event) => {
     if (gameOver === false) {
@@ -105,7 +106,8 @@ function GridTile({
   if (tileClickState.includes(parseInt(id))) {
     return (
       <img
-        onClick={() => handleChording(parseInt(id))}
+        onMouseDown={() => handleChording(parseInt(id))}
+        onMouseUp={() => setChordingState([])}
         width={"20px"}
         height={"20px"}
         src={`/images/Minesweeper${tile}.svg`}

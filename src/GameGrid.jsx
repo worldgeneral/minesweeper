@@ -18,6 +18,7 @@ function GameGrid({
   setGameInPlay,
   handleChording,
   chordingState,
+  setChordingState,
 }) {
   return (
     <div
@@ -45,6 +46,7 @@ function GameGrid({
           setGameInPlay={setGameInPlay}
           handleChording={handleChording}
           chordingState={chordingState}
+          setChordingState={setChordingState}
         />
       ))}
     </div>

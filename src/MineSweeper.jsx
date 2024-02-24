@@ -139,6 +139,7 @@ function MineSweeper() {
         setGameInPlay={setGameInPlay}
         handleChording={handleChording}
         chordingState={chordingState}
+        setChordingState={setChordingState}
       />
     </>
   );
