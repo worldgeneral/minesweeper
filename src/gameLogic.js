@@ -295,13 +295,14 @@ function chording(tile, grid, tileState, flagState, width, height) {
       }
     }
     return reveal;
-  } else if (!correctFlag && flaggedBombs.length === tile) {
+  } else if (!correctFlag && flaggedBombs.length === grid[tile]) {
     reveal.push("!correct");
     for (let i = 0; i < tiles.length; i++) {
       if (!tileState.includes(tileID[i]) && !flagState.includes(tileID[i])) {
         reveal.push(tileID[i]);
       }
     }
+    return reveal;
   } else if (flaggedBombs.length !== tile) {
     reveal.push("!flags");
     for (let i = 0; i < tiles.length; i++) {
