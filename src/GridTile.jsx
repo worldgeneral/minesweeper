@@ -64,6 +64,7 @@ function GridTile({
     }
   }
 
+  //bomb tile
   if (tile === -1 && gameOver === true && gameWin === false) {
     if (tileClickState[tileClickState.length - 1] === parseInt(id)) {
       return <button className="tile-btn minesweeper-clicked-bomb"></button>;
@@ -71,11 +72,11 @@ function GridTile({
       return <button className="tile-btn minesweeper-bomb"></button>;
     }
   }
-
+  //chording
   if (chordingState.includes(parseInt(id))) {
     return <button className="tile-btn tile0"></button>;
   }
-
+  //flagged tile
   if (
     flagCellState.includes(parseInt(id)) ||
     (gameWin === true && tile === -1)
@@ -87,6 +88,7 @@ function GridTile({
       ></button>
     );
   }
+  //number tile
   if (tileClickState.includes(parseInt(id))) {
     return (
       <button
@@ -96,6 +98,7 @@ function GridTile({
       ></button>
     );
   } else {
+    //blank tile
     return (
       <button
         className="unopened-tile tile-btn"
