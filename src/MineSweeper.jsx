@@ -42,16 +42,15 @@ function MineSweeper() {
   }, [gameInPlay]);
 
   useEffect(() => {
-    if (gameOver === true) {
+    if (gameOver || gameWin) {
       clearInterval(clock);
     }
   }, [gameOver, clock]);
 
   useEffect(() => {
-    if (tileClickState.length + bombCount === width * height) {
+    if (tileClickState.length + bombCount === width * height && !gameOver) {
       setButtonState(() => 1);
       setGameWin(true);
-      setGameOver(true);
       clearInterval(clock);
     }
   });
@@ -87,20 +86,18 @@ function MineSweeper() {
       width,
       height
     );
-
     if (cells[0] === "!flags") {
       setChordingState(() => cells.slice(1));
-      return;
     } else if (cells[0] === "correct") {
       setTileClickState((preValue) => {
         return [...preValue, ...cells.slice(1)];
       });
-      return;
-    } else {
+    } else if (cells[0] === "!correct") {
       setTileClickState((preValue) => {
         return [...preValue, ...cells.slice(1)];
       });
       setGameOver(true);
+      setButtonState(() => 2);
       return;
     }
   }
@@ -141,6 +138,14 @@ function MineSweeper() {
         chordingState={chordingState}
         setChordingState={setChordingState}
       />
+      <button
+        onClick={() =>
+          console.log(tileClickState.filter((e, i, a) => a.indexOf(e) !== i))
+        }
+      >
+        duplicate num
+      </button>
+      <button onClick={() => console.log(tileClickState)}></button>
     </>
   );
 }

@@ -294,6 +294,21 @@ function chording(tile, grid, tileState, flagState, width, height) {
         reveal.push(tileID[i]);
       }
     }
+
+    const revealTiles = [];
+    reveal.forEach((index) => {
+      if (grid[index] === 0) {
+        cellReveal(width, height, grid, tile, tileState).forEach((tile) => {
+          revealTiles.push(tile);
+        });
+      }
+    });
+    revealTiles.forEach((index) => {
+      if (!tileState.includes(index) && !reveal.includes(index)) {
+        reveal.push(index);
+      }
+    });
+
     return reveal;
   } else if (!correctFlag && flaggedBombs.length === grid[tile]) {
     reveal.push("!correct");

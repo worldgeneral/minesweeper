@@ -55,7 +55,7 @@ function GridTile({
 
     if (gameOver === false && tileClickState.includes(parseInt(id)) === false) {
       if (tile === 0) {
-        revealCells(id);
+        revealCells(parseInt(id));
       } else {
         setTileClickState((preValue) => {
           return [...preValue, parseInt(id)];
