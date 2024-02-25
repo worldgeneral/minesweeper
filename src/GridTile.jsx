@@ -13,7 +13,6 @@ function GridTile({
   revealCells,
   setButtonState,
   displayValue,
-  setGameInPlay,
   handleChording,
   chordingState,
   setChordingState,
@@ -42,7 +41,6 @@ function GridTile({
   }
 
   function handleClick() {
-    setGameInPlay(true);
     if (tile === -1 && gameOver === false && gameWin === false) {
       return (
         setGameOver(true),
