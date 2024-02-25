@@ -1,3 +1,4 @@
+import { Display } from "react-7-segment-display";
 import { BombCounter } from "./BombCounter";
 import { GridSizeForm } from "./GridSizeForm";
 import { MineSweeperButton } from "./MineSweeperButton";
@@ -11,10 +12,7 @@ function GameMenu({
   width,
   height,
   bombCount,
-  gameWin,
-  gameOver,
   buttonState,
-  setButtonState,
   remainingBombCount,
   timePast,
 }) {
@@ -27,23 +25,22 @@ function GameMenu({
 
   return (
     <>
-      <BombCounter remainingBombCount={remainingBombCount} />
-      <MineSweeperButton
-        gridSettings={gridSettings}
-        gameWin={gameWin}
-        gameOver={gameOver}
-        buttonState={buttonState}
-        setButtonState={setButtonState}
-        width={width}
-        height={height}
-        bombCount={bombCount}
-      />
-      <TimePastDisplay timePast={timePast} />
       <div>
         <button onClick={() => gridSettings(9, 9, 10)}>Beginner</button>
         <button onClick={() => gridSettings(16, 16, 40)}> Intermediate</button>
         <button onClick={() => gridSettings(32, 16, 99)}>Expert</button>
         <GridSizeForm gridSettings={gridSettings} />
+      </div>
+      <div style={{ display: "flex" }}>
+        <BombCounter remainingBombCount={remainingBombCount} />
+        <MineSweeperButton
+          gridSettings={gridSettings}
+          buttonState={buttonState}
+          width={width}
+          height={height}
+          bombCount={bombCount}
+        />
+        <TimePastDisplay timePast={timePast} />
       </div>
     </>
   );
