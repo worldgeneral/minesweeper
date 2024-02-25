@@ -93,8 +93,15 @@ function GridTile({
     return (
       <button
         className={`tile${tile} tile-btn`}
-        onMouseDown={() => handleChording(parseInt(id))}
-        onMouseUp={() => setChordingState([])}
+        onMouseDown={(event) => {
+          if (event.buttons === 3) {
+            handleChording(parseInt(id));
+          }
+        }}
+        onMouseUp={() => {
+          setChordingState([]);
+        }}
+        onContextMenu={(event) => event.preventDefault()}
       ></button>
     );
   } else {
