@@ -138,14 +138,6 @@ function MineSweeper() {
         chordingState={chordingState}
         setChordingState={setChordingState}
       />
-      <button
-        onClick={() =>
-          console.log(tileClickState.filter((e, i, a) => a.indexOf(e) !== i))
-        }
-      >
-        duplicate num
-      </button>
-      <button onClick={() => console.log(tileClickState)}></button>
     </>
   );
 }
