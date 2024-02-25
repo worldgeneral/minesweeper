@@ -1,4 +1,6 @@
+import { GameGrid } from "./GameGrid";
 import "./GridTile.css";
+import { useEffect, useRef } from "react";
 
 function GridTile({
   tile,
@@ -18,6 +20,35 @@ function GridTile({
   chordingState,
   setChordingState,
 }) {
+  const myRef = useRef(null);
+
+  useEffect(() => {
+    function chording(event) {
+      if (event.buttons === 3) {
+        console.log("hello");
+        console.log(flagCellState);
+        handleChording(parseInt(id));
+      }
+    }
+
+    function chording1(event) {
+      setChordingState(() => []);
+    }
+    if (myRef.current) {
+      if (tile >= 1 && tile <= 8) {
+        myRef.current.addEventListener("mousedown", chording);
+        myRef.current.addEventListener("mouseup", chording1);
+      } else {
+        myRef.current?.removeEventListener("mousedown", chording);
+        myRef.current?.removeEventListener("mouseup", chording1);
+      }
+    }
+    return () => {
+      myRef.current?.removeEventListener("mousedown", chording);
+      myRef.current?.removeEventListener("mouseup", chording1);
+    };
+  }, [tileClickState, flagCellState, chordingState, handleChording, tile]);
+
   const handleRightClick = (event) => {
     if (gameOver === false) {
       flagCell();
@@ -92,9 +123,11 @@ function GridTile({
   if (tileClickState.includes(parseInt(id))) {
     return (
       <button
+        ref={myRef}
         className={`tile${tile} tile-btn`}
-        onMouseDown={() => handleChording(parseInt(id))}
-        onMouseUp={() => setChordingState([])}
+        onContextMenu={(event) => event.preventDefault()}
+        // onMouseDown={() => handleChording(parseInt(id))}
+        // onMouseUp={() => setChordingState([])}
       ></button>
     );
   } else {

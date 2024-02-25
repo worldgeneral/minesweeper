@@ -7,15 +7,15 @@ function MineSweeper() {
   const [width, setWidth] = useState(9);
   const [height, setHeight] = useState(9);
   const [bombCount, setBombCount] = useState(10);
-  const [tileClickState, setTileClickState] = useState(() => []);
-  const [flagCellState, setFlagCellState] = useState(() => []);
+  const [tileClickState, setTileClickState] = useState([]);
+  const [flagCellState, setFlagCellState] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [gameWin, setGameWin] = useState(false);
   const [gameInPlay, setGameInPlay] = useState(false);
   const [buttonState, setButtonState] = useState(0);
   const [timePast, setTimePast] = useState(0);
   const [clock, setClock] = useState(null);
-  const [chordingState, setChordingState] = useState(() => []);
+  const [chordingState, setChordingState] = useState([]);
   const [remainingBombCount, setRemainingBombCount] = useState(
     parseInt(bombCount)
   );
@@ -79,6 +79,7 @@ function MineSweeper() {
   }
 
   function handleChording(id) {
+    console.log(flagCellState);
     const cells = chording(
       id,
       gameGrid,
@@ -87,7 +88,7 @@ function MineSweeper() {
       width,
       height
     );
-
+    console.log(id, cells, tileClickState, flagCellState);
     if (cells[0] === "!flags") {
       setChordingState(() => cells.slice(1));
       return;
