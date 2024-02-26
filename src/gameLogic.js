@@ -61,9 +61,9 @@ function blankGrid(width, height) {
   const totalTiles = width * height;
   const grid = [];
   for (let i = 0; i < totalTiles; i++) {
-    grid.push(10);
+    grid.push(null);
   }
-  console.log(grid);
+
   return grid;
 }
 
