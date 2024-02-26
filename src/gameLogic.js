@@ -1,7 +1,7 @@
-function gridLayout(width, height, totalBombCount) {
+function gridLayout(width, height, totalBombCount, tile) {
   const grid = [];
   const totalTiles = width * height;
-  const bombArray = hasBomb(totalBombCount, totalTiles);
+  const bombArray = hasBomb(totalBombCount, totalTiles, tile).slice(1);
   let currentCell = 0;
 
   for (let cell = 0; cell < totalTiles; cell++) {
@@ -57,14 +57,25 @@ function gridLayout(width, height, totalBombCount) {
   return grid;
 }
 
+function blankGrid(width, height) {
+  const totalTiles = width * height;
+  const grid = [];
+  for (let i = 0; i < totalTiles; i++) {
+    grid.push(null);
+  }
+
+  return grid;
+}
+
 function randomBetween(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
 
-function hasBomb(bombCount, tileCount) {
+function hasBomb(bombCount, tileCount, tile) {
   const bombs = new Set();
+  bombs.add(tile);
 
-  while (bombs.size < bombCount) {
+  while (bombs.size < bombCount + 1) {
     bombs.add(randomBetween(0, tileCount - 1));
   }
 
@@ -328,4 +339,4 @@ function chording(tile, grid, tileState, flagState, width, height) {
     return reveal;
   }
 }
-export { gridLayout, cellReveal, chording };
+export { gridLayout, cellReveal, chording, blankGrid };

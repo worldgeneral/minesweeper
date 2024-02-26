@@ -7,18 +7,13 @@ function GameGrid({
   height,
   gameOver,
   gameWin,
-  setGameOver,
   tileClickState,
-  setTileClickState,
   flagCellState,
-  setFlagCellState,
-  revealCells,
-  setButtonState,
-  displayValue,
-  setGameInPlay,
   handleChording,
   chordingState,
   setChordingState,
+  handleRightClick,
+  handleClick,
 }) {
   return (
     <div
@@ -34,22 +29,18 @@ function GameGrid({
           id={`${index}`}
           key={`${index}`}
           gameOver={gameOver}
-          setGameOver={setGameOver}
           gameWin={gameWin}
           tileClickState={tileClickState}
-          setTileClickState={setTileClickState}
           flagCellState={flagCellState}
-          setFlagCellState={setFlagCellState}
-          revealCells={revealCells}
-          setButtonState={setButtonState}
-          displayValue={displayValue}
-          setGameInPlay={setGameInPlay}
           handleChording={handleChording}
           chordingState={chordingState}
           setChordingState={setChordingState}
+          handleRightClick={handleRightClick}
+          handleClick={handleClick}
         />
       ))}
     </div>
   );
 }
+
 export { GameGrid };

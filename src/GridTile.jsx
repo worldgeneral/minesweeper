@@ -4,66 +4,15 @@ function GridTile({
   tile,
   id,
   gameOver,
-  setGameOver,
   gameWin,
   tileClickState,
-  setTileClickState,
   flagCellState,
-  setFlagCellState,
-  revealCells,
-  setButtonState,
-  displayValue,
-  setGameInPlay,
   handleChording,
   chordingState,
   setChordingState,
+  handleRightClick,
+  handleClick,
 }) {
-  const handleRightClick = (event) => {
-    if (gameOver === false) {
-      flagCell();
-      event.preventDefault();
-    }
-  };
-
-  function flagCell() {
-    if (flagCellState.includes(parseInt(id))) {
-      setFlagCellState((preValue) => {
-        let state = [...preValue];
-        state.splice(state.indexOf(parseInt(id)), 1);
-        return state;
-      });
-      displayValue(false);
-    } else {
-      setFlagCellState((preValue) => {
-        return [...preValue, parseInt(id)];
-      });
-      displayValue(true);
-    }
-  }
-
-  function handleClick() {
-    setGameInPlay(true);
-    if (tile === -1 && gameOver === false && gameWin === false) {
-      return (
-        setGameOver(true),
-        setButtonState(() => 2),
-        setTileClickState((preValue) => {
-          return [...preValue, parseInt(id)];
-        })
-      );
-    }
-
-    if (gameOver === false && tileClickState.includes(parseInt(id)) === false) {
-      if (tile === 0) {
-        revealCells(parseInt(id));
-      } else {
-        setTileClickState((preValue) => {
-          return [...preValue, parseInt(id)];
-        });
-      }
-    }
-  }
-
   //bomb tile
   if (tile === -1 && gameOver === true && gameWin === false) {
     if (tileClickState[tileClickState.length - 1] === parseInt(id)) {
@@ -84,7 +33,10 @@ function GridTile({
     return (
       <button
         className="tile-btn minesweeper-flag"
-        onContextMenu={handleRightClick}
+        onContextMenu={(event) => {
+          event.preventDefault();
+          handleRightClick(parseInt(id));
+        }}
       ></button>
     );
   }
@@ -109,8 +61,11 @@ function GridTile({
     return (
       <button
         className="unopened-tile tile-btn"
-        onClick={() => handleClick()}
-        onContextMenu={handleRightClick}
+        onClick={() => handleClick(tile, parseInt(id))}
+        onContextMenu={(event) => {
+          event.preventDefault();
+          handleRightClick(parseInt(id));
+        }}
       ></button>
     );
   }

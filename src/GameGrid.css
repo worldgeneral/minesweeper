@@ -9,3 +9,14 @@
 .game-grid img {
   display: block;
 }
+.tile-button {
+  background: none;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background-size: cover;
+  background-position: center;
+  width: 20px;
+  height: 20px;
+  background-image: url("/images/MinesweeperUnopened.svg");
+}
