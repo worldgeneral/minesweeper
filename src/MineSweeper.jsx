@@ -86,6 +86,12 @@ function MineSweeper() {
       setTimeout(() => {
         revealCells(parseInt(firstClick));
       }, 10);
+    } else {
+      setTimeout(() => {
+        setTileClickState((preValue) => {
+          return [...preValue, parseInt(firstClick)];
+        });
+      }, 10);
     }
   }, [firstClick]);
 
