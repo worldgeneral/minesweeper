@@ -20,7 +20,6 @@ function MineSweeper() {
   const [remainingBombCount, setRemainingBombCount] = useState(
     parseInt(bombCount)
   );
-  const [emptyGrid, setEmptyGrid] = useState(() => blankGrid(width, height));
   const [gameGrid, setGameGrid] = useState(() => blankGrid(width, height));
 
   function generateGrid(tile) {
@@ -83,15 +82,11 @@ function MineSweeper() {
   }
   useEffect(() => {
     if (typeof firstClick === "number" && gameGrid[firstClick] === 0) {
-      setTimeout(() => {
-        revealCells(parseInt(firstClick));
-      }, 10);
+      revealCells(parseInt(firstClick));
     } else {
-      setTimeout(() => {
-        setTileClickState((preValue) => {
-          return [...preValue, parseInt(firstClick)];
-        });
-      }, 10);
+      setTileClickState((preValue) => {
+        return [...preValue, parseInt(firstClick)];
+      });
     }
   }, [firstClick]);
 
