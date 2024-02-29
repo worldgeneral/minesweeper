@@ -7,7 +7,7 @@ function MineSweeper() {
   const [width, setWidth] = useState(9);
   const [height, setHeight] = useState(9);
   const [bombCount, setBombCount] = useState(10);
-  const [tileClickState, setTileClickState] = useState([]);
+  const [tileClickState, setTileClickState] = useState(() => []);
   const [flagCellState, setFlagCellState] = useState([]);
   const [gameOver, setGameOver] = useState(false);
   const [gameWin, setGameWin] = useState(false);
@@ -84,9 +84,10 @@ function MineSweeper() {
     if (typeof firstClick === "number" && gameGrid[firstClick] === 0) {
       revealCells(parseInt(firstClick));
     } else {
-      setTileClickState((preValue) => {
-        return [...preValue, parseInt(firstClick)];
-      });
+      if (typeof firstClick === "number")
+        setTileClickState((preValue) => {
+          return [...preValue, parseInt(firstClick)];
+        });
     }
   }, [firstClick]);
 
