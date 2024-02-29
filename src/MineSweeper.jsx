@@ -2,6 +2,7 @@ import { GameGrid } from "./GameGrid";
 import { GameMenu } from "./GameMenu";
 import { gridLayout, cellReveal, chording, blankGrid } from "./gameLogic";
 import { useState, useEffect } from "react";
+import { ImagePreLoad } from "./ImagePreLoad";
 
 function MineSweeper() {
   const [width, setWidth] = useState(9);
@@ -201,6 +202,7 @@ function MineSweeper() {
         handleClick={handleClick}
         setButtonState={setButtonState}
       />
+      <ImagePreLoad />
     </>
   );
 }
