@@ -199,6 +199,7 @@ function MineSweeper() {
         generateGrid={generateGrid}
         handleRightClick={handleRightClick}
         handleClick={handleClick}
+        setButtonState={setButtonState}
       />
     </>
   );

@@ -14,6 +14,7 @@ function GameGrid({
   setChordingState,
   handleRightClick,
   handleClick,
+  setButtonState,
 }) {
   return (
     <div
@@ -37,6 +38,7 @@ function GameGrid({
           setChordingState={setChordingState}
           handleRightClick={handleRightClick}
           handleClick={handleClick}
+          setButtonState={setButtonState}
         />
       ))}
     </div>

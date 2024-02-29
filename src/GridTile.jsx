@@ -12,6 +12,7 @@ function GridTile({
   setChordingState,
   handleRightClick,
   handleClick,
+  setButtonState,
 }) {
   //bomb tile
   if (tile === -1 && gameOver === true && gameWin === false) {
@@ -47,10 +48,12 @@ function GridTile({
         className={`tile${tile} tile-btn`}
         onMouseDown={(event) => {
           if (event.buttons === 3) {
+            setButtonState(3);
             handleChording(parseInt(id));
           }
         }}
         onMouseUp={() => {
+          setButtonState(0);
           setChordingState([]);
         }}
         onContextMenu={(event) => event.preventDefault()}
@@ -61,7 +64,11 @@ function GridTile({
     return (
       <button
         className="unopened-tile tile-btn"
+        onMouseDown={() => setButtonState(3)}
         onClick={() => handleClick(tile, parseInt(id))}
+        onMouseUp={() => {
+          setButtonState(0);
+        }}
         onContextMenu={(event) => {
           event.preventDefault();
           handleRightClick(parseInt(id));
