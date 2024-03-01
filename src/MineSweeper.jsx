@@ -1,8 +1,10 @@
 import { GameGrid } from "./GameGrid";
 import { GameMenu } from "./GameMenu";
-import { gridLayout, cellReveal, chording, blankGrid } from "./gameLogic";
 import { useState, useEffect } from "react";
 import { ImagePreLoad } from "./ImagePreLoad";
+import { gridLayout, blankGrid } from "./logic/gridLayout";
+import { cellReveal } from "./logic/cellReveal";
+import { chording } from "./logic/chording";
 
 function MineSweeper() {
   const [width, setWidth] = useState(9);
@@ -101,6 +103,7 @@ function MineSweeper() {
       width,
       height
     );
+    console.log(cells);
     if (cells[0] === "!flags") {
       setChordingState(() => cells.slice(1));
     } else if (cells[0] === "correct") {
