@@ -99,7 +99,6 @@ function correctFlagsCheck(tiles, grid, tile) {
 
   for (let i = 0; i < tiles.length; i++) {
     if (tiles[i][0] === -1 && correctFlag === true) {
-      console.log(flagCount, grid[tile]);
       if (tiles[i][2] && grid[tile] === flagCount) {
         correctFlag = true;
       } else {
