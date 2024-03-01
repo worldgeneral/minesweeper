@@ -103,7 +103,6 @@ function MineSweeper() {
       width,
       height
     );
-    console.log(cells);
     if (cells[0] === "!flags") {
       setChordingState(() => cells.slice(1));
     } else if (cells[0] === "correct") {

@@ -22,7 +22,7 @@ function chording(tile, grid, tileState, flagState, width, height) {
     );
     chordingTiles.forEach((tile) => reveal.push(tile));
     return reveal;
-  } else if (!correctFlags === false) {
+  } else if (correctFlags === false) {
     // returns incorrect reveal array to minesweeper
     const incorrectTiles = flagsInCorrect(tiles, tileState, flagState);
     incorrectTiles.forEach((tile) => reveal.push(tile));
@@ -80,7 +80,7 @@ function tileCheck(grid, flagState, position) {
   tiles.push(grid[position]);
   //tile id
   tiles.push(position);
-  if (flagState.includes(position) && grid[position] === -1) {
+  if (flagState.includes(position)) {
     // flag id
     tiles.push(position);
   }
@@ -89,22 +89,25 @@ function tileCheck(grid, flagState, position) {
 
 function correctFlagsCheck(tiles, grid, tile) {
   let correctFlag = true;
-  let bombCount = 0;
+  let flagCount = 0;
+
   tiles.forEach((tile) => {
     if (tile[2]) {
-      bombCount++;
+      flagCount++;
     }
   });
+
   for (let i = 0; i < tiles.length; i++) {
     if (tiles[i][0] === -1 && correctFlag === true) {
-      if (tiles[i][2] && grid[tile] === bombCount) {
+      console.log(flagCount, grid[tile]);
+      if (tiles[i][2] && grid[tile] === flagCount) {
         correctFlag = true;
       } else {
         correctFlag = false;
       }
     }
   }
-  if (grid[tile] !== bombCount) {
+  if (grid[tile] !== flagCount) {
     correctFlag = null;
   }
   return correctFlag;
