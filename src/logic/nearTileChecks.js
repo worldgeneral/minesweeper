@@ -15,11 +15,11 @@ const nearTileChecks = {
     );
   },
 
-  isAbove: function ({ currentCell, width, height, totalTiles }) {
+  isAbove: function ({ currentCell, width }) {
     return currentCell - width >= 0;
   },
 
-  isBelow: function ({ currentCell, width, height, totalTiles }) {
+  isBelow: function ({ currentCell, width, totalTiles }) {
     return currentCell + width < totalTiles;
   },
 

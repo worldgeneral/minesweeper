@@ -1,8 +1,8 @@
 const position = {
-  left: function ({ currentCell, width }) {
+  left: function ({ currentCell }) {
     return currentCell - 1;
   },
-  right: function ({ currentCell, width }) {
+  right: function ({ currentCell }) {
     return currentCell + 1;
   },
   above: function ({ currentCell, width }) {
