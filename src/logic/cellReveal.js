@@ -8,8 +8,8 @@ function cellReveal(width, height, grid, tile, tileClickState) {
   let currentCell = 0;
   let toLookAtIndex = 0;
 
-  reveal.push(parseInt(tile));
-  tilesLookAt.push(parseInt(tile));
+  reveal.push(tile);
+  tilesLookAt.push(tile);
 
   while (tilesLookAt.length > toLookAtIndex) {
     currentCell = tilesLookAt[toLookAtIndex];
