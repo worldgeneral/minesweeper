@@ -1,28 +1,12 @@
 const position = {
-  left: function ({ currentCell }) {
-    return currentCell - 1;
-  },
-  right: function ({ currentCell }) {
-    return currentCell + 1;
-  },
-  above: function ({ currentCell, width }) {
-    return currentCell - width;
-  },
-  below: function ({ currentCell, width }) {
-    return currentCell + width;
-  },
-  aboveLeft: function ({ currentCell, width }) {
-    return currentCell - width - 1;
-  },
-  aboveRight: function ({ currentCell, width }) {
-    return currentCell - width + 1;
-  },
-  belowLeft: function ({ currentCell, width }) {
-    return currentCell + width - 1;
-  },
-  belowRight: function ({ currentCell, width }) {
-    return currentCell + width + 1;
-  },
+  left: ({ currentCell }) => currentCell - 1,
+  right: ({ currentCell }) => currentCell + 1,
+  above: ({ currentCell, width }) => currentCell - width,
+  below: ({ currentCell, width }) => currentCell + width,
+  aboveLeft: ({ currentCell, width }) => currentCell - width - 1,
+  aboveRight: ({ currentCell, width }) => currentCell - width + 1,
+  belowLeft: ({ currentCell, width }) => currentCell + width - 1,
+  belowRight: ({ currentCell, width }) => currentCell + width + 1,
 };
 
 export { position };
