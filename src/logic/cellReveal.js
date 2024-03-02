@@ -85,15 +85,11 @@ function cellReveal(width, height, grid, tile, tileClickState) {
 }
 
 function tileCheck(grid, position, reveal, tileClickState) {
-  if (
+  return (
     grid[position] >= 0 &&
-    reveal.includes(position) === false &&
-    tileClickState.includes(position) === false
-  ) {
-    return true;
-  } else {
-    return false;
-  }
+    !reveal.includes(position) &&
+    !tileClickState.includes(position)
+  );
 }
 function toLookAt(grid, position) {
   if (grid[position] === 0) {
