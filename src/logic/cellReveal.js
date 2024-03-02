@@ -58,7 +58,7 @@ function cellReveal(width, height, grid, tile, tileClickState) {
       tilesLookAt.push(toLookAt(grid, belowLeft));
     }
     if (
-      nearTileChecks.isBelowRight([currentCell, width, height, totalTiles]) &&
+      nearTileChecks.isBelowRight({ currentCell, width, height, totalTiles }) &&
       tileCheck(grid, belowRight, reveal, tileClickState)
     ) {
       reveal.push(belowRight);
