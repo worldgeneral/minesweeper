@@ -1,7 +1,7 @@
-import { BombCounter } from "./BombCounter";
+import { SegmentDisplay } from "./SegmentDisplay";
 import { GridSizeForm } from "./GridSizeForm";
 import { MineSweeperButton } from "./MineSweeperButton";
-import { TimePastDisplay } from "./TimePastDisplay";
+
 import PropTypes from "prop-types";
 
 function GameMenu({
@@ -32,7 +32,7 @@ function GameMenu({
         <GridSizeForm gridSettings={gridSettings} />
       </div>
       <div style={{ display: "flex" }}>
-        <BombCounter remainingBombCount={remainingBombCount} />
+        <SegmentDisplay prop={remainingBombCount} />
         <MineSweeperButton
           gridSettings={gridSettings}
           buttonState={buttonState}
@@ -40,7 +40,7 @@ function GameMenu({
           height={height}
           bombCount={bombCount}
         />
-        <TimePastDisplay timePast={timePast} />
+        <SegmentDisplay prop={timePast} />
       </div>
     </>
   );
