@@ -17,33 +17,29 @@ function GridTile({
 }) {
   //bomb tile
   if (tile === -1 && gameOver === true && gameWin === false) {
-    if (tileClickState[tileClickState.length - 1] === parseInt(id)) {
+    if (tileClickState[tileClickState.length - 1] === id) {
       return <button className="tile-btn minesweeper-clicked-bomb"></button>;
-    } else {
-      return <button className="tile-btn minesweeper-bomb"></button>;
     }
+    return <button className="tile-btn minesweeper-bomb"></button>;
   }
   //chording
-  if (chordingState.includes(parseInt(id))) {
+  if (chordingState.includes(id)) {
     return <button className="tile-btn tile0"></button>;
   }
   //flagged tile
-  if (
-    flagCellState.includes(parseInt(id)) ||
-    (gameWin === true && tile === -1)
-  ) {
+  if (flagCellState.includes(id) || (gameWin === true && tile === -1)) {
     return (
       <button
         className="tile-btn minesweeper-flag"
         onContextMenu={(event) => {
           event.preventDefault();
-          handleRightClick(parseInt(id));
+          handleRightClick(id);
         }}
       ></button>
     );
   }
   //number tile
-  if (tileClickState.includes(parseInt(id))) {
+  if (tileClickState.includes(id)) {
     return (
       <button
         className={`tile${tile} tile-btn`}
@@ -51,7 +47,7 @@ function GridTile({
           if (event.buttons === 3) {
             if (!gameOver && !gameWin) {
               setButtonState(3);
-              handleChording(parseInt(id));
+              handleChording(id);
             }
           }
         }}
@@ -74,7 +70,7 @@ function GridTile({
             setButtonState(3);
           }
         }}
-        onClick={() => handleClick(tile, parseInt(id))}
+        onClick={() => handleClick(tile, id)}
         onMouseUp={() => {
           if (!gameOver && !gameWin) {
             setButtonState(0);
@@ -82,7 +78,7 @@ function GridTile({
         }}
         onContextMenu={(event) => {
           event.preventDefault();
-          handleRightClick(parseInt(id));
+          handleRightClick(id);
         }}
       ></button>
     );
@@ -91,7 +87,7 @@ function GridTile({
 
 GridTile.propTypes = {
   tile: PropTypes.number,
-  id: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   gameOver: PropTypes.bool.isRequired,
   gameWin: PropTypes.bool.isRequired,
   tileClickState: PropTypes.array.isRequired,

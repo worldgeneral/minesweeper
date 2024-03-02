@@ -28,8 +28,8 @@ function GameGrid({
       {grid.map((tile, index) => (
         <GridTile
           tile={tile}
-          id={`${index}`}
-          key={`${index}`}
+          id={index}
+          key={index}
           gameOver={gameOver}
           gameWin={gameWin}
           tileClickState={tileClickState}
