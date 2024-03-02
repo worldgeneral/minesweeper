@@ -27,12 +27,11 @@ function chording(tile, grid, tileState, flagState, width, height) {
     const incorrectTiles = flagsInCorrect(tiles, tileState, flagState);
     incorrectTiles.forEach((tile) => reveal.push(tile));
     return incorrectTiles;
-  } else {
-    // returns cell array to minesweeper for not enough flags around cell
-    const belowTile = flagsBelowTile(tiles, tileState, flagState);
-    belowTile.forEach((tile) => reveal.push(tile));
-    return reveal;
   }
+  // returns cell array to minesweeper for not enough flags around cell
+  const belowTile = flagsBelowTile(tiles, tileState, flagState);
+  belowTile.forEach((tile) => reveal.push(tile));
+  return reveal;
 }
 
 function chordingTiles(currentCell, width, height, grid, flagState) {
