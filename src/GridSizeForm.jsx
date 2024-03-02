@@ -1,7 +1,7 @@
 import { useState } from "react";
 import PropTypes from "prop-types";
 
-function GridSizeForm({ gridSettings }) {
+function GridSizeForm({ newGame }) {
   const [formData, setFormData] = useState({
     width: 9,
     height: 9,
@@ -19,12 +19,7 @@ function GridSizeForm({ gridSettings }) {
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    gridSettings(
-      parseInt(formData.width, 10),
-      parseInt(formData.height, 10),
-      parseInt(formData.bombCount, 10)
-    );
+    newGame(formData.width, formData.height, formData.bombCount);
   };
 
   return (
@@ -59,7 +54,7 @@ function GridSizeForm({ gridSettings }) {
 }
 
 GridSizeForm.propTypes = {
-  gridSettings: PropTypes.func.isRequired,
+  newGame: PropTypes.func.isRequired,
 };
 
 export { GridSizeForm };

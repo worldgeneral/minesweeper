@@ -16,25 +16,25 @@ function GameMenu({
   remainingBombCount,
   timePast,
 }) {
-  function gridSettings(gridWidth, gridHeight, gridBombCount) {
-    setWidth(() => gridWidth);
-    setHeight(() => gridHeight);
-    setBombCount(() => gridBombCount);
+  function newGame(gridWidth, gridHeight, gridBombCount) {
+    setWidth(gridWidth);
+    setHeight(gridHeight);
+    setBombCount(gridBombCount);
     resetGame(gridWidth, gridHeight, gridBombCount);
   }
 
   return (
     <>
       <div>
-        <button onClick={() => gridSettings(9, 9, 10)}>Beginner</button>
-        <button onClick={() => gridSettings(16, 16, 40)}> Intermediate</button>
-        <button onClick={() => gridSettings(32, 16, 99)}>Expert</button>
-        <GridSizeForm gridSettings={gridSettings} />
+        <button onClick={() => newGame(9, 9, 10)}>Beginner</button>
+        <button onClick={() => newGame(16, 16, 40)}> Intermediate</button>
+        <button onClick={() => newGame(32, 16, 99)}>Expert</button>
+        <GridSizeForm newGame={newGame} />
       </div>
       <div style={{ display: "flex" }}>
         <SegmentDisplay prop={remainingBombCount} />
         <MineSweeperButton
-          gridSettings={gridSettings}
+          newGame={newGame}
           buttonState={buttonState}
           width={width}
           height={height}
