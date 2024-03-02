@@ -4,21 +4,13 @@ function gridLayout(width, height, totalBombCount, tile) {
   const grid = [];
   const totalTiles = width * height;
   const bombArray = hasBomb(totalBombCount, totalTiles, tile).slice(1);
-  let currentCell = 0;
 
   for (let cell = 0; cell < totalTiles; cell++) {
-    if (bombArray.includes(currentCell)) {
-      grid[currentCell] = -1;
+    if (bombArray.includes(cell)) {
+      grid[cell] = -1;
     } else {
-      grid[currentCell] = bombCount(
-        bombArray,
-        currentCell,
-        width,
-        height,
-        totalTiles
-      );
+      grid[cell] = bombCount(bombArray, cell, width, height, totalTiles);
     }
-    currentCell++;
   }
 
   return grid;
