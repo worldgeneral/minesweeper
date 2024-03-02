@@ -47,28 +47,28 @@ function chordingTiles(currentCell, width, height, grid, flagState) {
   const totalTiles = width * height;
   const chordingGrid = [];
 
-  if (nearTileChecks.isAboveLeft(currentCell, width, height, totalTiles)) {
+  if (nearTileChecks.isAboveLeft({ currentCell, width, height, totalTiles })) {
     chordingGrid.push(tileCheck(grid, flagState, aboveLeft));
   }
-  if (nearTileChecks.isAbove(currentCell, width, height, totalTiles)) {
+  if (nearTileChecks.isAbove({ currentCell, width, height, totalTiles })) {
     chordingGrid.push(tileCheck(grid, flagState, above));
   }
-  if (nearTileChecks.isAboveRight(currentCell, width, height, totalTiles)) {
+  if (nearTileChecks.isAboveRight({ currentCell, width, height, totalTiles })) {
     chordingGrid.push(tileCheck(grid, flagState, aboveRight));
   }
-  if (nearTileChecks.isLeft(currentCell, width, height, totalTiles)) {
+  if (nearTileChecks.isLeft({ currentCell, width, height, totalTiles })) {
     chordingGrid.push(tileCheck(grid, flagState, left));
   }
-  if (nearTileChecks.isRight(currentCell, width, height, totalTiles)) {
+  if (nearTileChecks.isRight({ currentCell, width, height, totalTiles })) {
     chordingGrid.push(tileCheck(grid, flagState, right));
   }
-  if (nearTileChecks.isBelowLeft(currentCell, width, height, totalTiles)) {
+  if (nearTileChecks.isBelowLeft({ currentCell, width, height, totalTiles })) {
     chordingGrid.push(tileCheck(grid, flagState, belowLeft));
   }
-  if (nearTileChecks.isBelow(currentCell, width, height, totalTiles)) {
+  if (nearTileChecks.isBelow({ currentCell, width, height, totalTiles })) {
     chordingGrid.push(tileCheck(grid, flagState, below));
   }
-  if (nearTileChecks.isBelowRight(currentCell, width, height, totalTiles)) {
+  if (nearTileChecks.isBelowRight({ currentCell, width, height, totalTiles })) {
     chordingGrid.push(tileCheck(grid, flagState, belowRight));
   }
   return chordingGrid;

@@ -1,6 +1,6 @@
 import { GameGrid } from "./GameGrid";
 import { GameMenu } from "./GameMenu";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { ImagePreLoad } from "./ImagePreLoad";
 import { gridLayout, blankGrid } from "./logic/gridLayout";
 import { cellReveal } from "./logic/cellReveal";
@@ -45,13 +45,13 @@ function MineSweeper() {
       }, 1000);
       setClock(clock);
     }
-  }, [gameInPlay]);
+  }, [gameInPlay, clock]);
 
   useEffect(() => {
     if (gameOver || gameWin) {
       clearInterval(clock);
     }
-  }, [gameOver, clock]);
+  }, [gameOver, clock, gameWin]);
 
   useEffect(() => {
     if (tileClickState.length + bombCount === width * height && !gameOver) {
@@ -59,7 +59,7 @@ function MineSweeper() {
       setGameWin(true);
       clearInterval(clock);
     }
-  });
+  }, [tileClickState, bombCount, width, height, gameOver, clock]);
 
   function resetGame(width, height, bombCount) {
     setGameGrid(blankGrid(width, height));
@@ -77,12 +77,15 @@ function MineSweeper() {
     setFirstClick(null);
   }
 
-  function revealCells(tile) {
-    const cells = cellReveal(width, height, gameGrid, tile, tileClickState);
-    setTileClickState((preValue) => {
-      return [...preValue, ...cells];
-    });
-  }
+  const revealCells = useCallback(
+    (tile) => {
+      const cells = cellReveal(width, height, gameGrid, tile, tileClickState);
+      setTileClickState((preValue) => {
+        return [...preValue, ...cells];
+      });
+    },
+    [width, height, gameGrid, tileClickState]
+  );
   useEffect(() => {
     if (typeof firstClick === "number" && gameGrid[firstClick] === 0) {
       revealCells(parseInt(firstClick));
@@ -92,7 +95,8 @@ function MineSweeper() {
           return [...preValue, parseInt(firstClick)];
         });
     }
-  }, [firstClick]);
+    setFirstClick(null);
+  }, [firstClick, gameGrid, revealCells]);
 
   function handleChording(id) {
     const cells = chording(
@@ -147,6 +151,7 @@ function MineSweeper() {
       generateGrid(id);
       setFirstClick(id);
     }
+
     if (tile === -1 && gameOver === false && gameWin === false) {
       return (
         setGameOver(true),
@@ -158,9 +163,9 @@ function MineSweeper() {
     }
 
     if (gameOver === false && !tileClickState.includes(id)) {
-      if (tile === 0 && firstClick !== null) {
+      if (tile === 0 && gameInPlay) {
         revealCells(id);
-      } else if (firstClick !== null) {
+      } else if (gameInPlay) {
         setTileClickState((preValue) => {
           return [...preValue, id];
         });

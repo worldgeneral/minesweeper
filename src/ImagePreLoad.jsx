@@ -1,6 +1,3 @@
-import { useState } from "react";
-import { MineSweeper } from "./MineSweeper";
-
 function ImagePreLoad() {
   const images = [
     "/images/Minesweeper0.svg",

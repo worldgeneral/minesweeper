@@ -28,49 +28,49 @@ function bombCount(bombArray, currentCell, width, height, totalTiles) {
   let value = 0;
 
   if (
-    nearTileChecks.isLeft(currentCell, width, height, totalTiles) &&
+    nearTileChecks.isLeft({ currentCell, width, height, totalTiles }) &&
     bombArray.includes(currentCell - 1)
   ) {
     value++;
   }
   if (
-    nearTileChecks.isRight(currentCell, width, height, totalTiles) &&
+    nearTileChecks.isRight({ currentCell, width, height, totalTiles }) &&
     bombArray.includes(currentCell + 1)
   ) {
     value++;
   }
   if (
-    nearTileChecks.isAbove(currentCell, width, height, totalTiles) &&
+    nearTileChecks.isAbove({ currentCell, width, height, totalTiles }) &&
     bombArray.includes(currentCell - width)
   ) {
     value++;
   }
   if (
-    nearTileChecks.isBelow(currentCell, width, height, totalTiles) &&
+    nearTileChecks.isBelow({ currentCell, width, height, totalTiles }) &&
     bombArray.includes(currentCell + width)
   ) {
     value++;
   }
   if (
-    nearTileChecks.isAboveLeft(currentCell, width, height, totalTiles) &&
+    nearTileChecks.isAboveLeft({ currentCell, width, height, totalTiles }) &&
     bombArray.includes(currentCell - width - 1)
   ) {
     value++;
   }
   if (
-    nearTileChecks.isAboveRight(currentCell, width, height, totalTiles) &&
+    nearTileChecks.isAboveRight({ currentCell, width, height, totalTiles }) &&
     bombArray.includes(currentCell - width + 1)
   ) {
     value++;
   }
   if (
-    nearTileChecks.isBelowLeft(currentCell, width, height, totalTiles) &&
+    nearTileChecks.isBelowLeft({ currentCell, width, height, totalTiles }) &&
     bombArray.includes(currentCell + width - 1)
   ) {
     value++;
   }
   if (
-    nearTileChecks.isBelowRight(currentCell, width, height, totalTiles) &&
+    nearTileChecks.isBelowRight({ currentCell, width, height, totalTiles }) &&
     bombArray.includes(currentCell + width + 1)
   ) {
     value++;

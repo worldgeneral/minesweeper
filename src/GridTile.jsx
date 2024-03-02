@@ -1,4 +1,5 @@
 import "./GridTile.css";
+import PropTypes from "prop-types";
 
 function GridTile({
   tile,
@@ -48,13 +49,17 @@ function GridTile({
         className={`tile${tile} tile-btn`}
         onMouseDown={(event) => {
           if (event.buttons === 3) {
-            setButtonState(3);
-            handleChording(parseInt(id));
+            if (!gameOver && !gameWin) {
+              setButtonState(3);
+              handleChording(parseInt(id));
+            }
           }
         }}
         onMouseUp={() => {
-          setButtonState(0);
-          setChordingState([]);
+          if (!gameOver && !gameWin) {
+            setButtonState(0);
+            setChordingState([]);
+          }
         }}
         onContextMenu={(event) => event.preventDefault()}
       ></button>
@@ -64,10 +69,16 @@ function GridTile({
     return (
       <button
         className="unopened-tile tile-btn"
-        onMouseDown={() => setButtonState(3)}
+        onMouseDown={() => {
+          if (!gameOver && !gameWin) {
+            setButtonState(3);
+          }
+        }}
         onClick={() => handleClick(tile, parseInt(id))}
         onMouseUp={() => {
-          setButtonState(0);
+          if (!gameOver && !gameWin) {
+            setButtonState(0);
+          }
         }}
         onContextMenu={(event) => {
           event.preventDefault();
@@ -77,5 +88,20 @@ function GridTile({
     );
   }
 }
+
+GridTile.propTypes = {
+  tile: PropTypes.number,
+  id: PropTypes.string.isRequired,
+  gameOver: PropTypes.bool.isRequired,
+  gameWin: PropTypes.bool.isRequired,
+  tileClickState: PropTypes.array.isRequired,
+  flagCellState: PropTypes.array.isRequired,
+  handleChording: PropTypes.func.isRequired,
+  chordingState: PropTypes.array.isRequired,
+  setChordingState: PropTypes.func.isRequired,
+  handleRightClick: PropTypes.func.isRequired,
+  handleClick: PropTypes.func.isRequired,
+  setButtonState: PropTypes.func.isRequired,
+};
 
 export { GridTile };

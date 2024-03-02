@@ -1,5 +1,6 @@
 import { Display } from "react-7-segment-display";
 import "./BombCounter.css";
+import PropTypes from "prop-types";
 
 function BombCounter({ remainingBombCount }) {
   return (
@@ -12,4 +13,7 @@ function BombCounter({ remainingBombCount }) {
   );
 }
 
+BombCounter.propTypes = {
+  remainingBombCount: PropTypes.number.isRequired,
+};
 export { BombCounter };

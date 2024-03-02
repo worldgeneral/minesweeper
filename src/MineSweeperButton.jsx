@@ -1,3 +1,5 @@
+import PropTypes from "prop-types";
+
 function MineSweeperButton({
   gridSettings,
   buttonState,
@@ -21,5 +23,13 @@ function MineSweeperButton({
     </>
   );
 }
+
+MineSweeperButton.propTypes = {
+  gridSettings: PropTypes.func.isRequired,
+  buttonState: PropTypes.number.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  bombCount: PropTypes.number.isRequired,
+};
 
 export { MineSweeperButton };

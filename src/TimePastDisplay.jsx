@@ -1,4 +1,5 @@
 import { Display } from "react-7-segment-display";
+import PropTypes from "prop-types";
 
 function TimePastDisplay({ timePast }) {
   return (
@@ -10,5 +11,9 @@ function TimePastDisplay({ timePast }) {
     />
   );
 }
+
+TimePastDisplay.propTypes = {
+  timePast: PropTypes.number.isRequired,
+};
 
 export { TimePastDisplay };

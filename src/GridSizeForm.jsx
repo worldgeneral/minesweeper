@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 
 function GridSizeForm({ gridSettings }) {
   const [formData, setFormData] = useState({
@@ -56,5 +57,9 @@ function GridSizeForm({ gridSettings }) {
     </form>
   );
 }
+
+GridSizeForm.propTypes = {
+  gridSettings: PropTypes.func.isRequired,
+};
 
 export { GridSizeForm };

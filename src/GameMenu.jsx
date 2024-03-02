@@ -1,8 +1,8 @@
-import { Display } from "react-7-segment-display";
 import { BombCounter } from "./BombCounter";
 import { GridSizeForm } from "./GridSizeForm";
 import { MineSweeperButton } from "./MineSweeperButton";
 import { TimePastDisplay } from "./TimePastDisplay";
+import PropTypes from "prop-types";
 
 function GameMenu({
   resetGame,
@@ -45,4 +45,17 @@ function GameMenu({
     </>
   );
 }
+
+GameMenu.propTypes = {
+  resetGame: PropTypes.func.isRequired,
+  setWidth: PropTypes.func.isRequired,
+  setHeight: PropTypes.func.isRequired,
+  setBombCount: PropTypes.func.isRequired,
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+  bombCount: PropTypes.number.isRequired,
+  buttonState: PropTypes.number.isRequired,
+  remainingBombCount: PropTypes.number.isRequired,
+  timePast: PropTypes.number.isRequired,
+};
 export { GameMenu };
