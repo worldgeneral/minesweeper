@@ -79,13 +79,7 @@ function bombCount(bombArray, currentCell, width, height, totalTiles) {
 }
 
 function blankGrid(width, height) {
-  const totalTiles = width * height;
-  const grid = [];
-  for (let i = 0; i < totalTiles; i++) {
-    grid.push(null);
-  }
-
-  return grid;
+  return Array.from({ length: width * height }).fill(null);
 }
 
 function randomBetween(min, max) {
