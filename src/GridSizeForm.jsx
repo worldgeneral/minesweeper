@@ -8,12 +8,12 @@ function GridSizeForm({ newGame }) {
     bombCount: 10,
   });
 
-  const handleChange = (evt) => {
-    const changedField = evt.target.name;
-    const newValue = evt.target.value;
+  const handleChange = (event) => {
     setFormData((currData) => {
-      currData[changedField] = newValue;
-      return { ...currData };
+      return {
+        ...currData,
+        [event.target.name]: parseInt(event.target.value, 10),
+      };
     });
   };
 
@@ -29,7 +29,6 @@ function GridSizeForm({ newGame }) {
         placeholder="9"
         value={formData.width}
         onChange={handleChange}
-        id="widthInput"
         name="width"
       />
       <input
@@ -37,7 +36,6 @@ function GridSizeForm({ newGame }) {
         placeholder="9"
         value={formData.height}
         onChange={handleChange}
-        id="heightInput"
         name="height"
       />
       <input
@@ -45,7 +43,6 @@ function GridSizeForm({ newGame }) {
         placeholder="10"
         value={formData.bombCount}
         onChange={handleChange}
-        id="bombCountInput"
         name="bombCount"
       />
       <button>Play</button>
