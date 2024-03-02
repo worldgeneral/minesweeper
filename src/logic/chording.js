@@ -99,7 +99,7 @@ function correctFlagsCheck(tiles, grid, tile) {
 
   for (let i = 0; i < tiles.length; i++) {
     if (tiles[i][0] === -1 && correctFlag === true) {
-      correctFlag = tiles[i][2] && grid[tile] === flagCount;
+      correctFlag = (tiles[i][2] && grid[tile]) === flagCount;
     }
   }
   if (grid[tile] !== flagCount) {
