@@ -1,5 +1,6 @@
 import { cellReveal } from "./cellReveal";
 import { nearTileChecks } from "./nearTileChecks";
+import { getPositionalChecks } from "./cellPositions";
 
 function chording(tile, grid, tileState, flagState, width, height) {
   const reveal = [];
@@ -35,14 +36,16 @@ function chording(tile, grid, tileState, flagState, width, height) {
 }
 
 function chordingTiles(currentCell, width, height, grid, flagState) {
-  const aboveLeft = currentCell - width - 1;
-  const above = currentCell - width;
-  const aboveRight = currentCell - width + 1;
-  const left = currentCell - 1;
-  const right = currentCell + 1;
-  const belowLeft = currentCell + width - 1;
-  const below = currentCell + width;
-  const belowRight = currentCell + width + 1;
+  const {
+    left,
+    right,
+    above,
+    below,
+    belowRight,
+    belowLeft,
+    aboveLeft,
+    aboveRight,
+  } = getPositionalChecks({ currentCell, width });
   const totalTiles = width * height;
   const chordingGrid = [];
 

@@ -1,5 +1,5 @@
 import { nearTileChecks } from "./nearTileChecks";
-import { position } from "./cellPositions";
+import { getPositionalChecks } from "./cellPositions";
 
 function cellReveal(width, height, grid, tile, tileClickState) {
   const tilesLookAt = [];
@@ -13,14 +13,16 @@ function cellReveal(width, height, grid, tile, tileClickState) {
 
   while (tilesLookAt.length > toLookAtIndex) {
     currentCell = tilesLookAt[toLookAtIndex];
-    const left = position.left({ currentCell, width });
-    const right = position.right({ currentCell, width });
-    const above = position.above({ currentCell, width });
-    const below = position.below({ currentCell, width });
-    const belowRight = position.belowRight({ currentCell, width });
-    const belowLeft = position.belowLeft({ currentCell, width });
-    const aboveLeft = position.aboveLeft({ currentCell, width });
-    const aboveRight = position.aboveRight({ currentCell, width });
+    const {
+      left,
+      right,
+      above,
+      below,
+      belowRight,
+      belowLeft,
+      aboveLeft,
+      aboveRight,
+    } = getPositionalChecks({ currentCell, width });
 
     if (
       nearTileChecks.isLeft({ currentCell, width, height, totalTiles }) &&

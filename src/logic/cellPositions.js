@@ -9,4 +9,18 @@ const position = {
   belowRight: ({ currentCell, width }) => currentCell + width + 1,
 };
 
-export { position };
+function getPositionalChecks({ currentCell, width }) {
+  const values = { currentCell, width };
+  return {
+    left: position.left(values),
+    right: position.right(values),
+    above: position.above(values),
+    below: position.below(values),
+    belowRight: position.belowRight(values),
+    belowLeft: position.belowLeft(values),
+    aboveLeft: position.aboveLeft(values),
+    aboveRight: position.aboveRight(values),
+  };
+}
+
+export { getPositionalChecks };
