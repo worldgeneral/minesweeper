@@ -1,11 +1,7 @@
 import { MineSweeper } from "./MineSweeper.jsx";
 
 function App() {
-  return (
-    <>
-      <MineSweeper />
-    </>
-  );
+  return <MineSweeper />;
 }
 
 export default App;
